@@ -1,4 +1,11 @@
-/* style.css (or inside a <style> block in your head) */
+.site-header {
+  /* pick whatever color you like: */
+  background-color: #004080;
+  color: white;            /* header text color */
+  padding: 1rem;           /* some breathing room */
+  border-bottom: 2px solid #002050;  /* optional accent line */
+}
+
 .site-hero {
   /* 1. Center everything */
   text-align: center;
