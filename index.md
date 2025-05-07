@@ -1,10 +1,5 @@
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ELEC 327 Final Project – Radar Gun</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
 <body>
 
   <!-- DARK HEADER BANNER -->
@@ -26,7 +21,7 @@
     </ul>
 
 
-  <h23>Videos <h3>
+  <h3>Videos <h3>
 
 <div class="video-container">
   <iframe 
