@@ -5,16 +5,16 @@ title: ELEC 327 Final Project – Radar Gun
 
 ## Rice University
 Welcome to our final project repository for ELEC 327.  
+
 ### Authors
 - Nick Hu  
 - Aden Briano
 - Brandon Stroud
 - Marc Alaniz
-
+---
 ## Project Links
-<div class="project-links">
- <p>[Report](ELEC_327_Final_Report.pdf) <p>
- <p>[Code](https://github.com/BrianoAden/RadarGun/tree/main#) <p>
+[Report](ELEC_327_Final_Report.pdf) <p>
+[Code](https://github.com/BrianoAden/RadarGun/tree/main#)
 
 ---
 
