@@ -11,8 +11,8 @@
   text-align: center;
 
   /* 2. Change the background to a solid color (or your own gradient) */
-  background-color: #2c3e50;           /* a dark slate blue */
-  /* background: linear-gradient(90deg, #2c3e50, #4ca1af); */ /* <- alternative gradient */
+  /* background-color: #2c3e50;     */      /* a dark slate blue */
+  background: linear-gradient(90deg, #2c3e50, #4ca1af);  /* <- alternative gradient */
 
   /* 3. Add some vertical padding so it doesn’t look squished */
   padding: 2.5rem 1rem;
