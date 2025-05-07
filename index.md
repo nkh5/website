@@ -11,9 +11,11 @@ Welcome to our final project repository for ELEC 327.
 - Aden Briano
 - Brandon Stroud
 - Marc Alaniz
----
+
+
+
 ## Project Links
-[Report](ELEC_327_Final_Report.pdf) <p>
+[Report](ELEC_327_Final_Report.pdf)
 [Code](https://github.com/BrianoAden/RadarGun/tree/main#)
 
 ---
