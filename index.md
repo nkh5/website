@@ -18,6 +18,8 @@ title: ELEC 327 Final Project – Radar Gun
     <li>Brandon Stroud</li>
     <li>Marc Alaniz</li>
   </ul>
+[Report](ELEC_327_Final_Report.pdf)
+[Code](https://github.com/BrianoAden/RadarGun/tree/main#)
 
   <h3>Videos</h3>
 
