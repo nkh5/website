@@ -1,7 +1,8 @@
----
-layout: default
-title: ELEC 327 Final Project – Radar Gun
----
+<body>
+  <header class="site-header">
+    <h1>ELEC 327 Final Project – Radar Gun</h1>
+  </header>
+
 
 ## Rice University
 Welcome to our final project repository for ELEC 327.  
