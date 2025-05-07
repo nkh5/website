@@ -1,9 +1,28 @@
-<div class="container">
-   <nav class="sidebar">
-     <a href="#introduction">Main Page</a>
-   </nav>
-   <main class="content">
-     <!-- Jekyll inserts page content here -->
-     {{ content }}
-   </main>
- </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <!-- Gradient header -->
+  <header class="site-header">
+    <h1>{{ page.title | default: site.title }}</h1>
+    <p>{{ page.subtitle | default: site.description }}</p>
+  </header>
+
+  <div class="container">
+    <!-- optional sidebar/nav -->
+    <aside class="sidebar">
+      <!-- your links… -->
+    </aside>
+
+    <!-- main, centered content area -->
+    <main class="content">
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
