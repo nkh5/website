@@ -1,24 +1,32 @@
-<!-- <h1>ELEC 327 Final Project</h1> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ELEC 327 Final Project – Radar Gun</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<header class="site-header">
-  <h1>ELEC 327 Final Project – Radar Gun</h1>
-  <p>Rice University</p>
-  <p>Welcome to our final project repository for ELEC 327.</p>
-  <h2>Authors</h2>
-  <ul>
-    <li>Nick Hu</li>
-    <li>Aden Briano</li>
-    <li>Brandon Stroud</li>
-    <li>Marc Alaniz</li>
-  </ul>
-  <h2>Project Links</h2>
-  <p><a href="ELEC327-Final-Project/ELEC_327_Final_Report.pdf">Report</a></p>
-  <p><a href="https://github.com/nkh5/ELEC327-Final-Project">Code</a></p>
-</header>
+  <!-- DARK HEADER BANNER -->
+  <header class="site-banner">
+    <h1>ELEC 327 Final Project – Radar Gun</h1>
+  </header>
 
----
+  <!-- WHITE CONTENT AREA -->
+  <main class="site-content">
+    <h2>Rice University</h2>
+    <p>Welcome to our final project repository for ELEC 327.</p>
 
-## Videos
+    <h3>Authors</h3>
+    <ul>
+      <li>Nick Hu</li>
+      <li>Aden Briano</li>
+      <li>Brandon Stroud</li>
+      <li>Marc Alaniz</li>
+    </ul>
+
+
+  <h23>Videos <h3>
 
 <div class="video-container">
   <iframe 
