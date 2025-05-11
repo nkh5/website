@@ -25,14 +25,14 @@ title: ELEC 327 Final Project – Radar Gun
 
 
   <h3>Videos</h3>
-
+  <h2>ELEC 327 Full Walkthrough</h2>
   <div class="video-container">
-     <h2>ELEC 327 Full Walkthrough</h2>
+   
     <iframe src="https://youtu.be/zIUE9ofouQ8" allowfullscreen></iframe>
   </div>
-
+  <h2>ELEC 327 Product Demonstration</h2>
   <div class="video-container">
-     <h2>ELEC 327 Product Demonstration</h2>
+   
     <iframe src="https://youtu.be/xcucSsSnjHM" allowfullscreen></iframe>
   </div>
 </main>
