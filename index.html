@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Software Engineer</title>
+    <title>Your Name - Software Engineer Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 </head>
 <body>
     <header>
@@ -19,6 +19,11 @@
                     <li><a onclick="scrollToSection('projects')">Projects</a></li>
                     <li><a onclick="scrollToSection('contact')">Contact</a></li>
                 </ul>
+                <div class="mobile-menu" onclick="toggleMobileMenu()">
+                    <div class="hamburger"></div>
+                    <div class="hamburger"></div>
+                    <div class="hamburger"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -26,50 +31,89 @@
     <main>
         <section id="hero" class="hero">
             <div class="container">
-                <h1>Your Name</h1>
-                <p>Full-Stack Software Engineer & Problem Solver</p>
-                <a href="#projects" class="cta-button">View My Work</a>
+                <div class="hero-content">
+                    <h1>Your Name</h1>
+                    <p class="hero-subtitle">Full-Stack Software Engineer & Problem Solver</p>
+                    <p class="hero-description">Building scalable applications and solving complex challenges with modern technologies</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="cta-button primary">View My Work</a>
+                        <a href="#contact" class="cta-button secondary">Get In Touch</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="about">
+        <section id="about" class="content-section">
             <div class="container">
                 <div class="section-content">
                     <h2>About Me</h2>
-                    <p class="intro-text">
-                        I'm a passionate software engineer with X+ years of experience building scalable web applications 
-                        and solving complex technical challenges. I love creating efficient, user-friendly solutions that 
-                        make a real impact.
-                    </p>
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <p class="intro-text">
+                                I'm a passionate software engineer with 5+ years of experience building scalable web applications 
+                                and solving complex technical challenges. I love creating efficient, user-friendly solutions that 
+                                make a real impact on businesses and users alike.
+                            </p>
+                            <p>
+                                My journey in software development started with curiosity about how things work behind the scenes. 
+                                Today, I specialize in full-stack development, cloud architecture, and modern web technologies. 
+                                I'm always eager to learn new technologies and take on challenging projects.
+                            </p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">20+</div>
+                                <div class="stat-label">Technologies</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="skills-grid">
                         <div class="skill-category">
-                            <h3>Frontend</h3>
+                            <div class="skill-icon">🎨</div>
+                            <h3>Frontend Development</h3>
                             <div class="skill-tags">
                                 <span class="skill-tag">React</span>
                                 <span class="skill-tag">Vue.js</span>
                                 <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Next.js</span>
                                 <span class="skill-tag">CSS3</span>
                                 <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">Sass</span>
                             </div>
                         </div>
                         <div class="skill-category">
-                            <h3>Backend</h3>
+                            <div class="skill-icon">⚙️</div>
+                            <h3>Backend Development</h3>
                             <div class="skill-tags">
                                 <span class="skill-tag">Node.js</span>
                                 <span class="skill-tag">Python</span>
                                 <span class="skill-tag">Java</span>
+                                <span class="skill-tag">Express</span>
                                 <span class="skill-tag">PostgreSQL</span>
                                 <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">Redis</span>
                             </div>
                         </div>
                         <div class="skill-category">
-                            <h3>Tools & Cloud</h3>
+                            <div class="skill-icon">☁️</div>
+                            <h3>Cloud & DevOps</h3>
                             <div class="skill-tags">
                                 <span class="skill-tag">AWS</span>
                                 <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Kubernetes</span>
                                 <span class="skill-tag">Git</span>
                                 <span class="skill-tag">Jenkins</span>
-                                <span class="skill-tag">Kubernetes</span>
+                                <span class="skill-tag">Terraform</span>
+                                <span class="skill-tag">Linux</span>
                             </div>
                         </div>
                     </div>
@@ -77,107 +121,276 @@
             </div>
         </section>
 
-        <section id="resume" class="resume">
+        <section id="resume" class="content-section">
             <div class="container">
                 <div class="section-content">
-                    <h2>Experience</h2>
-                    <div class="experience-item">
-                        <div class="job-title">Senior Software Engineer</div>
-                        <div class="company">Your Company | 2022 - Present</div>
-                        <p>Led development of microservices architecture serving 1M+ users. Improved system performance by 40% through optimization and caching strategies. Mentored junior developers and established best practices.</p>
-                    </div>
-                    <div class="experience-item">
-                        <div class="job-title">Software Engineer</div>
-                        <div class="company">Previous Company | 2020 - 2022</div>
-                        <p>Built full-stack web applications using React and Node.js. Implemented CI/CD pipelines and automated testing. Collaborated with product team to deliver features on time.</p>
-                    </div>
-                    <div class="experience-item">
-                        <div class="job-title">Junior Developer</div>
-                        <div class="company">First Company | 2019 - 2020</div>
-                        <p>Developed responsive web applications and REST APIs. Worked with databases and implemented user authentication systems. Gained experience in agile development methodologies.</p>
-                    </div>
+                    <h2>Experience & Education</h2>
                     
-                    <h3 class="education-title">Education</h3>
-                    <div class="experience-item">
-                        <div class="job-title">B.S. Computer Science</div>
-                        <div class="company">Your University | 2015 - 2019</div>
-                        <p>Graduated Magna Cum Laude. Relevant coursework: Data Structures, Algorithms, Software Engineering, Database Systems, Computer Networks.</p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="job-title">Senior Software Engineer</div>
+                                <div class="company">Tech Company Inc. | 2022 - Present</div>
+                                <ul class="job-description">
+                                    <li>Led development of microservices architecture serving 1M+ users</li>
+                                    <li>Improved system performance by 40% through optimization and caching strategies</li>
+                                    <li>Mentored junior developers and established coding best practices</li>
+                                    <li>Architected and implemented CI/CD pipelines reducing deployment time by 60%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="job-title">Software Engineer</div>
+                                <div class="company">Startup Solutions | 2020 - 2022</div>
+                                <ul class="job-description">
+                                    <li>Built full-stack web applications using React, Node.js, and PostgreSQL</li>
+                                    <li>Implemented automated testing achieving 95% code coverage</li>
+                                    <li>Collaborated with product team to deliver features on time and within scope</li>
+                                    <li>Designed and developed RESTful APIs handling 10k+ requests per minute</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="job-title">Junior Developer</div>
+                                <div class="company">WebDev Corp | 2019 - 2020</div>
+                                <ul class="job-description">
+                                    <li>Developed responsive web applications and REST APIs</li>
+                                    <li>Worked with databases and implemented user authentication systems</li>
+                                    <li>Gained experience in agile development methodologies</li>
+                                    <li>Participated in code reviews and learned industry best practices</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item education">
+                            <div class="timeline-dot education-dot"></div>
+                            <div class="timeline-content">
+                                <div class="job-title">B.S. Computer Science</div>
+                                <div class="company">University of Technology | 2015 - 2019</div>
+                                <ul class="job-description">
+                                    <li>Graduated Magna Cum Laude with 3.8 GPA</li>
+                                    <li>Relevant coursework: Data Structures, Algorithms, Software Engineering</li>
+                                    <li>Database Systems, Computer Networks, Machine Learning</li>
+                                    <li>Senior project: Built a distributed task management system</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certifications">
+                        <h3>Certifications & Achievements</h3>
+                        <div class="cert-grid">
+                            <div class="cert-item">
+                                <div class="cert-icon">🏆</div>
+                                <div class="cert-name">AWS Certified Solutions Architect</div>
+                                <div class="cert-date">2023</div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">📜</div>
+                                <div class="cert-name">Google Cloud Professional Developer</div>
+                                <div class="cert-date">2022</div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">⭐</div>
+                                <div class="cert-name">Kubernetes Certified Application Developer</div>
+                                <div class="cert-date">2023</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="projects">
+        <section id="projects" class="content-section">
             <div class="container">
                 <div class="section-content">
                     <h2>Featured Projects</h2>
+                    <p class="section-subtitle">Here are some of my recent projects that showcase my skills and experience</p>
+                    
                     <div class="project-grid">
                         <div class="project-card">
-                            <div class="project-title">E-Commerce Platform</div>
-                            <p>A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard. Built for scalability and performance.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                                <span class="tech-tag">Stripe</span>
+                            <div class="project-image">
+                                <div class="project-placeholder">🛒</div>
                             </div>
-                            <div class="project-links">
-                                <a href="https://your-demo-link.com" class="project-link" target="_blank">Live Demo</a>
-                                <a href="https://github.com/your-username/project-repo" class="project-link" target="_blank">GitHub</a>
+                            <div class="project-content">
+                                <div class="project-title">E-Commerce Platform</div>
+                                <p class="project-description">
+                                    A full-stack e-commerce solution with real-time inventory management, payment processing, 
+                                    and admin dashboard. Built for scalability and performance with microservices architecture.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                    <span class="tech-tag">Stripe API</span>
+                                    <span class="tech-tag">AWS</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat">⭐ 45 Stars</div>
+                                    <div class="stat">🍴 12 Forks</div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/yourusername/ecommerce-platform" class="project-link" target="_blank">
+                                        <span>View Code</span>
+                                    </a>
+                                    <a href="https://ecommerce-demo.yoursite.com" class="project-link primary" target="_blank">
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+
                         <div class="project-card">
-                            <div class="project-title">Task Management API</div>
-                            <p>RESTful API for task management with user authentication, real-time updates, and comprehensive documentation. Includes automated testing and CI/CD.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">FastAPI</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">Docker</span>
+                            <div class="project-image">
+                                <div class="project-placeholder">📋</div>
                             </div>
-                            <div class="project-links">
-                                <a href="https://your-docs-link.com" class="project-link" target="_blank">Documentation</a>
-                                <a href="https://github.com/your-username/api-repo" class="project-link" target="_blank">GitHub</a>
+                            <div class="project-content">
+                                <div class="project-title">Task Management API</div>
+                                <p class="project-description">
+                                    RESTful API for task management with user authentication, real-time updates, and comprehensive 
+                                    documentation. Includes automated testing suite and CI/CD pipeline.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">FastAPI</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">JWT</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat">⭐ 32 Stars</div>
+                                    <div class="stat">🍴 8 Forks</div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/yourusername/task-api" class="project-link" target="_blank">
+                                        <span>View Code</span>
+                                    </a>
+                                    <a href="https://task-api-docs.yoursite.com" class="project-link primary" target="_blank">
+                                        <span>API Docs</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+
                         <div class="project-card">
-                            <div class="project-title">Data Visualization Dashboard</div>
-                            <p>Interactive dashboard for business analytics with real-time data processing, custom charts, and export functionality. Handles large datasets efficiently.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Vue.js</span>
-                                <span class="tech-tag">D3.js</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">Redis</span>
+                            <div class="project-image">
+                                <div class="project-placeholder">📊</div>
                             </div>
-                            <div class="project-links">
-                                <a href="https://your-dashboard-demo.com" class="project-link" target="_blank">Live Demo</a>
-                                <a href="https://github.com/your-username/dashboard-repo" class="project-link" target="_blank">GitHub</a>
+                            <div class="project-content">
+                                <div class="project-title">Analytics Dashboard</div>
+                                <p class="project-description">
+                                    Interactive dashboard for business analytics with real-time data processing, custom charts, 
+                                    and export functionality. Handles large datasets efficiently with optimized queries.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Vue.js</span>
+                                    <span class="tech-tag">D3.js</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">Redis</span>
+                                    <span class="tech-tag">Chart.js</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat">⭐ 28 Stars</div>
+                                    <div class="stat">🍴 6 Forks</div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/yourusername/analytics-dashboard" class="project-link" target="_blank">
+                                        <span>View Code</span>
+                                    </a>
+                                    <a href="https://dashboard-demo.yoursite.com" class="project-link primary" target="_blank">
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="more-projects">
+                        <p>Want to see more of my work?</p>
+                        <a href="https://github.com/yourusername" class="github-link" target="_blank">
+                            Visit My GitHub Profile →
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact">
+        <section id="contact" class="content-section">
             <div class="container">
                 <div class="section-content">
-                    <h2>Let's Connect</h2>
-                    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                    <h2>Let's Work Together</h2>
+                    <p class="section-subtitle">
+                        I'm always interested in new opportunities and exciting projects. 
+                        Let's discuss how we can work together!
+                    </p>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <h3>Get In Touch</h3>
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <div class="contact-icon">📧</div>
+                                    <div class="contact-details">
+                                        <div class="contact-label">Email</div>
+                                        <a href="mailto:your.email@domain.com">your.email@domain.com</a>
+                                    </div>
+                                </div>
+                                <div class="contact-method">
+                                    <div class="contact-icon">💼</div>
+                                    <div class="contact-details">
+                                        <div class="contact-label">LinkedIn</div>
+                                        <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+                                    </div>
+                                </div>
+                                <div class="contact-method">
+                                    <div class="contact-icon">🐙</div>
+                                    <div class="contact-details">
+                                        <div class="contact-label">GitHub</div>
+                                        <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                                    </div>
+                                </div>
+                                <div class="contact-method">
+                                    <div class="contact-icon">📍</div>
+                                    <div class="contact-details">
+                                        <div class="contact-label">Location</div>
+                                        <span>Your City, State</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+
+                        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                            <h3>Send Me a Message</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project or opportunity..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -185,13 +398,34 @@
 
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="mailto:your-email@domain.com" class="social-link" title="Email">📧</a>
-                <a href="https://linkedin.com/in/your-profile" class="social-link" title="LinkedIn" target="_blank">💼</a>
-                <a href="https://github.com/your-username" class="social-link" title="GitHub" target="_blank">🐙</a>
-                <a href="https://twitter.com/your-handle" class="social-link" title="Twitter" target="_blank">🐦</a>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Your Name</h3>
+                    <p>Full-Stack Software Engineer passionate about creating innovative solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#resume">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect With Me</h4>
+                    <div class="social-links">
+                        <a href="mailto:your.email@domain.com" class="social-link" title="Email">📧</a>
+                        <a href="https://linkedin.com/in/yourprofile" class="social-link" title="LinkedIn" target="_blank">💼</a>
+                        <a href="https://github.com/yourusername" class="social-link" title="GitHub" target="_blank">🐙</a>
+                        <a href="https://twitter.com/yourhandle" class="social-link" title="Twitter" target="_blank">🐦</a>
+                    </div>
+                </div>
             </div>
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Your Name. All rights reserved.</p>
+                <p>Built with ❤️ using modern web technologies</p>
+            </div>
         </div>
     </footer>
 
