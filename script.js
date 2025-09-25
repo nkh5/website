@@ -298,9 +298,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(-10px) scale(1)';
+            this.style.transform = 'translateY(0) scale(1)';
         });
     });
     
     // Smooth reveal animations for sections
-    const sections = document.querySelectorAll('.content-section
+    const sections = document.querySelectorAll('.content-section');
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // When the section enters the viewport, add the 'is-visible' class
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // Stop observing the element after it has become visible
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the section is visible
+    });
+
+    // Tell the observer to watch each section
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+});
