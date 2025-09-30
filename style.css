@@ -148,12 +148,13 @@ img {
     color: var(--text-primary);
     line-height: 1.2;
     max-width: 800px;
-    margin-bottom: 1rem;
+    margin: 0 auto 1rem auto; 
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto; 
+    max-width: 800px; 
 }
 
 .hero-socials {
