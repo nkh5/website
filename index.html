@@ -3,469 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicholas Hu — Silicon Validation &amp; Design Verification | Rice ECE</title>
-    <meta name="description" content="Nicholas Hu — Electrical &amp; Computer Engineering at Rice University (Class of 2027). Pre-silicon design verification and post-silicon validation: SystemVerilog testbenches, coverage closure, bench automation, and embedded firmware.">
+    <title>Nicholas Hu — Silicon Validation &amp; Design Verification</title>
+    <meta name="description" content="Nicholas Hu — Electrical &amp; Computer Engineering at Rice University (Class of 2027). Design verification, silicon validation, and embedded hardware.">
     <meta name="author" content="Nicholas Hu">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nicholas Hu — Silicon Validation &amp; Design Verification">
-    <meta property="og:description" content="ECE @ Rice University. I build self-checking verification environments and post-silicon validation benches.">
+    <meta property="og:description" content="ECE @ Rice University. I verify designs before tape-out and validate silicon after bring-up.">
     <meta property="og:url" content="https://nkh5.github.io/website/">
     <meta property="og:image" content="https://nkh5.github.io/website/assets/profile.jpg">
 
-    <!-- Favicon: chip icon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='8' y='8' width='16' height='16' rx='2' fill='%232dd4bf'/%3E%3Crect x='12' y='12' width='8' height='8' rx='1' fill='%230a0e14'/%3E%3Cg stroke='%232dd4bf' stroke-width='2'%3E%3Cpath d='M12 8V3M16 8V3M20 8V3M12 24v5M16 24v5M20 24v5M8 12H3M8 16H3M8 20H3M24 12h5M24 16h5M24 20h5'/%3E%3C/g%3E%3C/svg%3E">
+    <!-- Favicon: amber cube -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='7' fill='%23FFC53D'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='17' font-weight='800' fill='%231A1A18' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+
+    <!-- Set theme before first paint to avoid flash -->
+    <script>
+        (function () {
+            try {
+                document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark';
+            } catch (e) {
+                document.documentElement.dataset.theme = 'dark';
+            }
+        })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="top">
     <a class="skip-link" href="#projects">Skip to content</a>
-    <div class="scroll-progress" aria-hidden="true"></div>
 
-    <!-- ============ NAV ============ -->
-    <header class="header">
-        <nav class="navbar container" aria-label="Primary">
-            <a href="#top" class="nav-logo" aria-label="Nicholas Hu — home">
-                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-                    <rect x="8" y="8" width="16" height="16" rx="2" class="logo-chip"/>
-                    <g class="logo-pins"><path d="M12 8V4M16 8V4M20 8V4M12 24v4M16 24v4M20 24v4M8 12H4M8 16H4M8 20H4M24 12h4M24 16h4M24 20h4"/></g>
-                    <text x="16" y="20.5" class="logo-text">N</text>
-                </svg>
-                <span class="logo-name">nicholas<span class="logo-accent">.hu</span></span>
-            </a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener" class="nav-resume">Résumé <svg viewBox="0 0 16 16" class="icon-sm" aria-hidden="true"><path d="M8 1v9m0 0L4.5 6.5M8 10l3.5-3.5M2 12v2h12v-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-        </nav>
-    </header>
+    <div class="layout">
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <p class="side-name">Nicholas Hu</p>
+                <p class="side-role">ECE student at Rice University<br>Based in Houston, TX</p>
 
-    <main id="top">
-        <!-- ============ HERO ============ -->
-        <section class="hero">
-            <canvas id="wave-canvas" aria-hidden="true"></canvas>
-            <div class="hero-grid-overlay" aria-hidden="true"></div>
-            <div class="container hero-inner">
-                <p class="hero-status reveal"><span class="status-dot" aria-hidden="true"></span>Open to silicon validation &amp; design verification roles</p>
-                <h1 class="hero-name reveal">Nicholas Hu</h1>
-                <p class="hero-tagline reveal">I build <span class="accent">self-checking verification environments</span> before tape-out and <span class="accent-2">silicon validation benches</span> after bring-up.</p>
-                <p class="hero-sub reveal">Electrical &amp; Computer Engineering @ Rice University · Class of 2027 · Minor in Data Science</p>
-                <div class="hero-ctas reveal">
-                    <a href="#projects" class="btn btn-primary">View Projects
-                        <svg viewBox="0 0 16 16" class="icon-sm" aria-hidden="true"><path d="M8 3v10m0 0L3.5 8.5M8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                    <a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">Résumé (PDF)</a>
-                    <div class="hero-socials">
-                        <a href="https://github.com/nkh5" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-btn">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.12c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/nichhu/" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-btn">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
-                        </a>
-                        <a href="mailto:Nicholas.K.Hu@rice.edu" aria-label="Email Nicholas" class="social-btn">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M2.5 5.5h19v13h-19zM3 6l9 7 9-7"/></svg>
-                        </a>
-                    </div>
-                </div>
+                <nav class="side-nav" aria-label="Primary">
+                    <a href="#projects">Projects</a>
+                    <a href="#about">About me</a>
+                    <a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arrow" aria-hidden="true">↗</span></a>
+                </nav>
+            </div>
 
-                <div class="hero-stats reveal" aria-label="Highlights">
-                    <div class="stat">
-                        <span class="stat-num"><span class="count" data-target="4037">0</span></span>
-                        <span class="stat-label">self-checking DV transactions, <strong>0 mismatches</strong></span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-num"><span class="count" data-target="100">0</span>%</span>
-                        <span class="stat-label">functional coverage closure — 34/34 bins</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-num"><span class="count" data-target="200">0</span>+</span>
-                        <span class="stat-label">automated drive tests run @ Rockwell Automation</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-num"><span class="count" data-target="10">0</span>+</span>
-                        <span class="stat-label">senior engineers adopted my Git tooling</span>
-                    </div>
+            <div class="sidebar-bottom">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2.1 2.1M16.9 16.9 19 19M19 5l-2.1 2.1M7.1 16.9 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13.5A8.5 8.5 0 0 1 10.5 4 8.5 8.5 0 1 0 20 13.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="side-socials">
+                    <a href="https://www.linkedin.com/in/nichhu/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/nkh5" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:Nicholas.K.Hu@rice.edu">Email</a>
                 </div>
             </div>
-            <a href="#projects" class="scroll-hint" aria-label="Scroll to projects">
-                <svg viewBox="0 0 16 24" aria-hidden="true"><rect x="1" y="1" width="14" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle class="scroll-wheel" cx="8" cy="7" r="2" fill="currentColor"/></svg>
-            </a>
-        </section>
+        </aside>
 
-        <!-- ============ PROJECTS ============ -->
-        <section id="projects" class="section">
-            <div class="container">
-                <p class="section-kicker reveal"><span class="kicker-num">01</span>PROJECTS</p>
-                <h2 class="section-title reveal">Both sides of the silicon lifecycle</h2>
-                <p class="section-lede reveal">Pre-silicon verification, post-silicon validation, and the embedded &amp; data work that supports them.</p>
+        <!-- ============ MAIN ============ -->
+        <main class="main">
+            <!-- Hero: typewriter -->
+            <section class="hero">
+                <h1 class="hero-line">
+                    <span class="sr-only">I'm a silicon validation and design verification engineer.</span>
+                    <span aria-hidden="true">I'm <span class="typed" id="typed"></span><span class="cursor"></span></span>
+                </h1>
+                <p class="hero-sub">I verify digital designs before tape-out and validate silicon after bring-up.</p>
+                <a class="hero-link" href="#projects"><span class="arrow" aria-hidden="true">↗</span> See my work</a>
+            </section>
 
-                <!-- Featured: silicon-char-bench -->
-                <article class="project-card featured reveal">
-                    <div class="project-visual shmoo-visual" aria-hidden="true">
-                        <svg viewBox="0 0 360 250" class="shmoo-svg">
-                            <text x="14" y="20" class="svg-mono svg-dim">$ pytest testplans/shmoo.yaml</text>
-                            <text x="14" y="38" class="svg-mono svg-pass">PASS · CI green · 0 hardware required</text>
-                            <g class="shmoo-grid" transform="translate(48, 56)">
-                                <!-- generated shmoo cells injected by script.js -->
-                            </g>
-                            <text x="190" y="242" text-anchor="middle" class="svg-mono svg-dim">f_sys (MHz) →</text>
-                            <text x="16" y="150" text-anchor="middle" class="svg-mono svg-dim" transform="rotate(-90 16 150)">VDD (V) →</text>
-                        </svg>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-type">POST-SILICON VALIDATION · FLAGSHIP</p>
-                        <h3 class="project-title">RP2040 / RP2350 Silicon Characterization Bench</h3>
-                        <p class="project-desc">
-                            An automated, post-silicon-style validation bench for the Raspberry Pi RP2040 and RP2350:
-                            scripted bring-up, voltage/frequency shmoo, power characterization, and stepping comparison.
-                            A Python test framework with a mocked instrument layer runs the full suite in CI with
-                            <em>zero hardware</em>; YAML test plans require a spec reference and explicit pass criterion
-                            for every test.
-                        </p>
-                        <ul class="project-points">
-                            <li>Custom pico-sdk C firmware payload: USB serial command protocol, SRAM march + CRC workloads, watchdog recovery</li>
-                            <li>100-consecutive-cycle soak gate with host-side CRC reference checking</li>
-                            <li>GitHub Actions CI: lint, unit suite, and firmware kernel self-test — passing</li>
-                        </ul>
-                        <div class="project-readout">
-                            <span class="readout"><span class="readout-dot pass"></span>CI passing</span>
-                            <span class="readout">VID 0x2E8A</span>
-                            <span class="readout">MARCH+CRC workloads</span>
-                        </div>
-                        <div class="project-tags">
-                            <span class="tag">Python</span><span class="tag">pytest</span><span class="tag">C / pico-sdk</span><span class="tag">RP2040</span><span class="tag">YAML test plans</span><span class="tag">GitHub Actions</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nkh5/silicon-char-bench" target="_blank" rel="noopener" class="project-link">
-                                <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.12c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
+            <!-- Bento grid -->
+            <section id="projects" class="bento" aria-label="Projects and highlights">
+
+                <!-- silicon-char-bench -->
+                <article class="card card-link-wrap reveal">
+                    <a class="card-arrow" href="https://github.com/nkh5/silicon-char-bench" target="_blank" rel="noopener" aria-label="Silicon Characterization Bench on GitHub"><span aria-hidden="true">↗</span></a>
+                    <h2 class="card-title">Silicon Characterization Bench</h2>
+                    <p class="card-sub">Post-silicon validation · 2026</p>
+                    <p class="card-quote">
+                        An automated validation bench for the Raspberry Pi RP2040: scripted bring-up,
+                        voltage/frequency shmoo, and power characterization. The whole test suite runs
+                        in CI with zero hardware attached.
+                    </p>
+                    <p class="card-meta">Python · C (pico-sdk) · pytest · GitHub Actions</p>
+                </article>
+
+                <!-- Radar gun (photo card) -->
+                <article class="card card-link-wrap reveal">
+                    <a class="card-arrow" href="https://nkh5.github.io/ELEC327-Final-Project/" target="_blank" rel="noopener" aria-label="Radar speed gun project write-up"><span aria-hidden="true">↗</span></a>
+                    <h2 class="card-title">Handheld Radar Speed Gun</h2>
+                    <p class="card-sub">Custom PCB · Rice ELEC 327</p>
+                    <div class="card-photo">
+                        <img src="assets/radar-gun.jpg" alt="Hand-built radar speed gun with custom PCB and 3D-printed enclosure" loading="lazy">
                     </div>
                 </article>
 
-                <div class="project-grid">
-                    <!-- cpu-dv -->
-                    <article class="project-card reveal">
-                        <div class="project-visual wave-visual" aria-hidden="true">
-                            <svg viewBox="0 0 320 170" class="wave-svg">
-                                <text x="12" y="18" class="svg-mono svg-dim"># scoreboard: expected == actual</text>
-                                <g class="wave-traces" transform="translate(64, 30)">
-                                    <text x="-8" y="18" text-anchor="end" class="svg-mono svg-dim">clk</text>
-                                    <path class="trace trace-1" d="M0 22 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12"/>
-                                    <text x="-8" y="52" text-anchor="end" class="svg-mono svg-dim">a[15:0]</text>
-                                    <path class="trace trace-2" d="M0 56 h22 l4 -14 h44 l4 14 h32 l4 -14 h60 l4 14 h28 l4 -14 h26"/>
-                                    <path class="trace trace-2" d="M0 42 h22 l4 14 h44 l4 -14 h32 l4 14 h60 l4 -14 h28 l4 14 h26"/>
-                                    <text x="-8" y="86" text-anchor="end" class="svg-mono svg-dim">result</text>
-                                    <path class="trace trace-3" d="M0 90 h34 l4 -14 h52 l4 14 h44 l4 -14 h48 l4 14 h38"/>
-                                    <path class="trace trace-3" d="M0 76 h34 l4 14 h52 l4 -14 h44 l4 14 h48 l4 -14 h38"/>
-                                    <line class="wave-cursor" x1="148" y1="-4" x2="148" y2="100"/>
-                                </g>
-                                <text x="12" y="160" class="svg-mono svg-pass">4037 transactions · 0 mismatches · 34/34 bins</text>
-                            </svg>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-type">PRE-SILICON DESIGN VERIFICATION</p>
-                            <h3 class="project-title">16-bit CPU Verification Environment</h3>
-                            <p class="project-desc">
-                                SystemVerilog DV environment for a 16-bit processor I designed and ran on a Nexys A7 FPGA.
-                                Independent golden model and scoreboard, directed corner vectors, constrained-random stimulus,
-                                and functional coverage closure — the run fails if any bin is unhit. Scoreboard proven live by
-                                hand-injected RTL mutation.
-                            </p>
-                            <div class="project-readout">
-                                <span class="readout"><span class="readout-dot pass"></span>4,037 txns · 0 mismatches</span>
-                                <span class="readout">100% coverage (34/34)</span>
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag">SystemVerilog</span><span class="tag">Icarus Verilog</span><span class="tag">Constrained random</span><span class="tag">Coverage</span><span class="tag">FPGA · Vivado</span>
-                            </div>
-                            <div class="project-links">
-                                <span class="project-status"><span class="status-dot small" aria-hidden="true"></span>In active development — repo publishing soon</span>
-                            </div>
-                        </div>
-                    </article>
+                <!-- cpu-dv (stat quote card) -->
+                <article class="card reveal">
+                    <h2 class="card-title">16-bit CPU Verification</h2>
+                    <p class="card-sub">Pre-silicon DV · in progress</p>
+                    <p class="card-quote">
+                        “4,037 self-checking transactions against an independent golden model —
+                        zero mismatches, and 100% functional coverage. The run fails if a single
+                        bin goes unhit.”
+                    </p>
+                    <p class="card-meta">SystemVerilog · constrained random · repo publishing soon</p>
+                </article>
 
-                    <!-- Radar gun -->
-                    <article class="project-card reveal">
-                        <div class="project-visual photo-visual">
-                            <img src="assets/radar-gun.jpg" alt="Hand-built radar speed gun with custom PCB and 3D-printed enclosure" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <p class="project-type">EMBEDDED HARDWARE · ELEC 327</p>
-                            <h3 class="project-title">Handheld Radar Speed Gun</h3>
-                            <p class="project-desc">
-                                A Doppler radar speed gun built from the board up: custom KiCad PCB, 3D-printed enclosure,
-                                and embedded C firmware structured around a three-state machine for capture, processing,
-                                and display.
-                            </p>
-                            <div class="project-readout">
-                                <span class="readout">Custom PCB</span>
-                                <span class="readout">3-state firmware FSM</span>
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag">C</span><span class="tag">KiCad</span><span class="tag">PCB design</span><span class="tag">3D printing</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://nkh5.github.io/ELEC327-Final-Project/" target="_blank" rel="noopener" class="project-link">
-                                    <svg viewBox="0 0 16 16" class="icon-sm" aria-hidden="true"><path d="M6.5 3.5H3v9h9V9M9.5 2.5H13.5V6.5M13 3 7.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    Project write-up
-                                </a>
-                                <a href="https://github.com/nkh5/ELEC327-Final-Project" target="_blank" rel="noopener" class="project-link">
-                                    <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.12c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-                                    GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </article>
+                <!-- GoldBench -->
+                <article class="card card-link-wrap reveal">
+                    <a class="card-arrow" href="https://github.com/nkh5/goldbench" target="_blank" rel="noopener" aria-label="GoldBench on GitHub"><span aria-hidden="true">↗</span></a>
+                    <h2 class="card-title">GoldBench</h2>
+                    <p class="card-sub">ML evaluation benchmark · 2026</p>
+                    <p class="card-quote">
+                        “On low-signal financial data, simple models match complex ones.
+                        The real skill is knowing which questions are answerable — and
+                        reporting honestly when the answer is null.”
+                    </p>
+                    <p class="card-meta">Python · purged cross-validation · model compression</p>
+                </article>
 
-                    <!-- GoldBench -->
-                    <article class="project-card reveal">
-                        <div class="project-visual chart-visual" aria-hidden="true">
-                            <svg viewBox="0 0 320 170" class="chart-svg">
-                                <text x="12" y="18" class="svg-mono svg-dim"># leakage-controlled purged CV</text>
-                                <g transform="translate(40, 32)">
-                                    <line class="chart-axis" x1="0" y1="0" x2="0" y2="108"/>
-                                    <line class="chart-axis" x1="0" y1="108" x2="252" y2="108"/>
-                                    <path class="chart-line line-simple" d="M0 78 C 30 70, 50 56, 80 52 S 140 40, 170 36 S 230 26, 252 24"/>
-                                    <path class="chart-line line-complex" d="M0 82 C 28 80, 48 60, 78 62 S 138 44, 168 46 S 228 30, 252 30"/>
-                                    <text x="256" y="26" class="svg-mono svg-pass-sm">simple</text>
-                                    <text x="256" y="44" class="svg-mono svg-warn-sm">complex</text>
-                                </g>
-                                <text x="12" y="160" class="svg-mono svg-pass">finding: simple ≥ complex on low-signal data</text>
-                            </svg>
-                        </div>
-                        <div class="project-content">
-                            <p class="project-type">MACHINE LEARNING · EVALUATION RIGOR</p>
-                            <h3 class="project-title">GoldBench — Honest Forecasting Benchmark</h3>
-                            <p class="project-desc">
-                                A reproducible benchmark asking whether model complexity helps when forecasting gold futures.
-                                Five model families, two targets, leakage-controlled combinatorial purged cross-validation,
-                                then model compression for edge deployment with measured size/speed/accuracy trade-offs.
-                                The evaluation infrastructure is the centerpiece — results are reported honestly even when null.
-                            </p>
-                            <div class="project-readout">
-                                <span class="readout">5 model families</span>
-                                <span class="readout">Purged CV</span>
-                                <span class="readout">Edge compression</span>
-                            </div>
-                            <div class="project-tags">
-                                <span class="tag">Python</span><span class="tag">Time-series CV</span><span class="tag">Model compression</span><span class="tag">Data Science</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/nkh5/goldbench" target="_blank" rel="noopener" class="project-link">
-                                    <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.12c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-                                    View on GitHub
-                                </a>
-                            </div>
-                        </div>
+                <!-- Experience -->
+                <article class="card reveal">
+                    <h2 class="card-title">Experience</h2>
+                    <ul class="exp-list">
+                        <li>
+                            <p class="exp-role">Undergraduate Researcher</p>
+                            <p class="exp-org">Rice ECE × Baylor College of Medicine · 2024 — now</p>
+                            <p class="exp-note">ML models predicting patient mood from biomarkers for post-amputation care.</p>
+                        </li>
+                        <li>
+                            <p class="exp-role">Control &amp; Firmware Engineering Intern</p>
+                            <p class="exp-org">Rockwell Automation · Summer 2024</p>
+                            <p class="exp-note">200+ drive tests; built Git tooling adopted by 10+ senior engineers.</p>
+                        </li>
+                        <li>
+                            <p class="exp-role">Center &amp; Lab Assistant</p>
+                            <p class="exp-org">Lubar Innovation Center · Summer 2023</p>
+                        </li>
+                    </ul>
+                    <p class="card-meta">Also: OwlSat CubeSat hardware co-lead · IEEE · peer career advisor</p>
+                </article>
+
+                <!-- Currently + Education stack -->
+                <div class="card-stack">
+                    <article class="card card-accent reveal">
+                        <h2 class="card-title">Currently</h2>
+                        <p class="card-quote">Open to silicon validation &amp; design verification internships.</p>
+                        <a class="card-cta" href="mailto:Nicholas.K.Hu@rice.edu"><span class="arrow" aria-hidden="true">↗</span> Get in touch</a>
+                    </article>
+                    <article class="card reveal">
+                        <h2 class="card-title">Education</h2>
+                        <p class="card-quote">BS in Electrical &amp; Computer Engineering, Rice University — May 2027.</p>
+                        <p class="card-meta">GPA 3.7 / 4.0 · Minor in Data Science</p>
                     </article>
                 </div>
 
-                <p class="projects-more reveal">More on <a href="https://github.com/nkh5" target="_blank" rel="noopener">github.com/nkh5</a> — including a coin-cell Simon game on a custom PCB.</p>
-            </div>
-        </section>
-
-        <!-- ============ EXPERIENCE ============ -->
-        <section id="experience" class="section section-alt">
-            <div class="container">
-                <p class="section-kicker reveal"><span class="kicker-num">02</span>EXPERIENCE</p>
-                <h2 class="section-title reveal">Where I've worked</h2>
-
-                <div class="timeline">
-                    <article class="timeline-item reveal">
-                        <div class="timeline-marker" aria-hidden="true"></div>
-                        <div class="timeline-content">
-                            <p class="timeline-date">NOV 2024 — PRESENT</p>
-                            <h3 class="timeline-role">Undergraduate Researcher</h3>
-                            <p class="timeline-org">Rice University ECE × Baylor College of Medicine · Houston, TX</p>
-                            <ul class="timeline-points">
-                                <li>Developing machine learning algorithms that predict patient mood and depression levels from biomarkers, supporting post-amputation mental health care and interventions.</li>
-                                <li>CITI-certified for ethical handling of sensitive patient data under institutional research guidelines.</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item reveal">
-                        <div class="timeline-marker" aria-hidden="true"></div>
-                        <div class="timeline-content">
-                            <p class="timeline-date">JUN 2024 — AUG 2024</p>
-                            <h3 class="timeline-role">Control &amp; Firmware Engineering Intern</h3>
-                            <p class="timeline-org">Rockwell Automation · Milwaukee, WI</p>
-                            <ul class="timeline-points">
-                                <li>Ran 200+ efficiency and starting-torque tests on the Test Automation Framework, supporting drive and firmware development with optimized performance data.</li>
-                                <li>Built a MATLAB/Simulink Git comparison tool that automated model change detection and reporting — cut manual diffing by 40% and was adopted by 10+ senior engineers across multiple teams.</li>
-                                <li>Applied Lean Six Sigma methods (5S, Kaizen, DMAIC) to process improvement.</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item reveal">
-                        <div class="timeline-marker" aria-hidden="true"></div>
-                        <div class="timeline-content">
-                            <p class="timeline-date">JUN 2023 — AUG 2023</p>
-                            <h3 class="timeline-role">Center &amp; Lab Assistant</h3>
-                            <p class="timeline-org">Lubar Innovation Center · Milwaukee, WI</p>
-                            <ul class="timeline-points">
-                                <li>Operated and maintained lab machinery alongside researchers and trained students on safe, correct operating procedures.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-
-                <h3 class="subsection-title reveal">Leadership</h3>
-                <div class="leadership-grid">
-                    <div class="lead-card reveal">
-                        <p class="lead-role">Hardware Co-Team Lead</p>
-                        <p class="lead-org">OwlSat — Rice CubeSat Club</p>
-                        <p class="lead-desc">Coordinating mechanical, electrical, and software integration across a 20+ member team; cut hardware redundancy by 7%+ to hit CubeSat size, weight, and power budgets.</p>
+                <!-- About (full width) -->
+                <article id="about" class="card card-wide card-about reveal">
+                    <div class="about-photo">
+                        <img src="assets/profile.jpg" alt="Portrait of Nicholas Hu" loading="lazy">
                     </div>
-                    <div class="lead-card reveal">
-                        <p class="lead-role">Peer Career Advisor</p>
-                        <p class="lead-org">Rice Center for Career Development</p>
-                        <p class="lead-desc">Delivered workshops on networking, personal branding, and internship search — 13+ alumni speakers, 100+ students reached.</p>
-                    </div>
-                    <div class="lead-card reveal">
-                        <p class="lead-role">Sophomore Representative</p>
-                        <p class="lead-org">IEEE — Rice Chapter</p>
-                        <p class="lead-desc">Liaison between students and club leadership; helped organize 10+ technical workshops, guest lectures, and networking events.</p>
-                    </div>
-                    <div class="lead-card reveal">
-                        <p class="lead-role">Team Lead</p>
-                        <p class="lead-org">Global Research &amp; Consulting Group</p>
-                        <p class="lead-desc">Led a team of 7 building a content marketing strategy for the Greater Killeen Chamber of Commerce's transportation initiative.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ SKILLS ============ -->
-        <section id="skills" class="section">
-            <div class="container">
-                <p class="section-kicker reveal"><span class="kicker-num">03</span>SKILLS</p>
-                <h2 class="section-title reveal">Toolbox</h2>
-                <div class="skills-grid">
-                    <div class="skill-col reveal">
-                        <h3 class="skill-head"><span class="skill-icon" aria-hidden="true">⏚</span>Verification &amp; Validation</h3>
-                        <ul class="skill-list">
-                            <li>SystemVerilog / Verilog</li>
-                            <li>Self-checking testbenches &amp; golden models</li>
-                            <li>Constrained-random stimulus</li>
-                            <li>Functional coverage closure</li>
-                            <li>Icarus Verilog · Vivado simulation</li>
-                            <li>pytest test frameworks · YAML test plans</li>
-                            <li>Bench automation &amp; instrument abstraction</li>
-                        </ul>
-                    </div>
-                    <div class="skill-col reveal">
-                        <h3 class="skill-head"><span class="skill-icon" aria-hidden="true">⎓</span>Embedded &amp; Hardware</h3>
-                        <ul class="skill-list">
-                            <li>C (pico-sdk, MSPM0, bare metal)</li>
-                            <li>RP2040 / RP2350 · Raspberry Pi · Arduino</li>
-                            <li>FPGA — Nexys A7, Vivado flow</li>
-                            <li>PCB design — KiCad</li>
-                            <li>USB serial protocols · watchdogs · CRC</li>
-                            <li>Lab instrumentation &amp; bring-up</li>
-                        </ul>
-                    </div>
-                    <div class="skill-col reveal">
-                        <h3 class="skill-head"><span class="skill-icon" aria-hidden="true">∿</span>Software &amp; Data</h3>
-                        <ul class="skill-list">
-                            <li>Python · Java · MATLAB / Simulink</li>
-                            <li>Machine learning &amp; data science</li>
-                            <li>Git · GitLab · GitHub Actions CI</li>
-                            <li>Leakage-controlled model evaluation</li>
-                            <li>English · Chinese (native) · Spanish</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ ABOUT ============ -->
-        <section id="about" class="section section-alt">
-            <div class="container">
-                <p class="section-kicker reveal"><span class="kicker-num">04</span>ABOUT</p>
-                <div class="about-grid">
-                    <div class="about-photo reveal">
-                        <div class="photo-frame">
-                            <img src="assets/profile.jpg" alt="Portrait of Nicholas Hu" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="about-text reveal">
-                        <h2 class="section-title">Hi, I'm Nicholas.</h2>
+                    <div class="about-body">
+                        <h2 class="card-title">About me</h2>
                         <p>
-                            I'm a rising senior studying Electrical &amp; Computer Engineering at Rice University with a
-                            minor in Data Science. What gets me going is the question every chip team has to answer:
-                            <em>how do you know it works?</em> I like building the machinery that answers it — golden
-                            models and scoreboards before silicon exists, automated characterization benches once it does.
+                            Hi — I'm Nicholas, a rising senior at Rice. The question I keep coming back to is the one
+                            every chip team has to answer: <em>how do you know it works?</em> I like building the
+                            machinery that answers it — golden models and scoreboards before silicon exists,
+                            automated benches once it does.
                         </p>
                         <p>
-                            I've tested industrial drives at Rockwell Automation, built ML models with Baylor College of
-                            Medicine researchers, and led hardware integration for Rice's OwlSat CubeSat. Along the way
-                            I've picked up a habit I'd defend in any design review: results should be self-checking,
-                            reproducible, and honest — even when they're null.
+                            Before this I tested industrial drives at Rockwell Automation, and these days I split my
+                            time between ML research with Baylor College of Medicine and leading hardware integration
+                            for Rice's OwlSat CubeSat. Off the clock: I'm probably reworking a PCB I already called done.
                         </p>
-                        <div class="about-facts">
-                            <div class="fact"><span class="fact-label">EDUCATION</span><span class="fact-value">BS ECE, Rice University — May 2027</span></div>
-                            <div class="fact"><span class="fact-label">GPA</span><span class="fact-value">3.7 / 4.0</span></div>
-                            <div class="fact"><span class="fact-label">MINOR</span><span class="fact-value">Data Science</span></div>
-                            <div class="fact"><span class="fact-label">LOCATION</span><span class="fact-value">Houston, TX</span></div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </article>
 
-        <!-- ============ CONTACT ============ -->
-        <section id="contact" class="section contact-section">
-            <div class="container">
-                <p class="section-kicker reveal"><span class="kicker-num">05</span>CONTACT</p>
-                <h2 class="contact-title reveal">Let's talk silicon.</h2>
-                <p class="contact-lede reveal">
-                    I'm actively recruiting for silicon validation and design verification roles.
-                    If you're hiring — or just want to talk testbenches, bring-up, or CubeSats — my inbox is open.
-                </p>
-                <div class="contact-ctas reveal">
-                    <a href="mailto:Nicholas.K.Hu@rice.edu" class="btn btn-primary btn-lg">Nicholas.K.Hu@rice.edu</a>
-                    <a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Download Résumé</a>
-                </div>
-                <div class="contact-links reveal">
-                    <a href="https://github.com/nkh5" target="_blank" rel="noopener">GitHub ↗</a>
-                    <a href="https://www.linkedin.com/in/nichhu/" target="_blank" rel="noopener">LinkedIn ↗</a>
-                </div>
-            </div>
-        </section>
-    </main>
+                <!-- Contact (full width) -->
+                <article class="card card-wide card-contact reveal">
+                    <h2 class="contact-title">Let's talk silicon.</h2>
+                    <p class="contact-sub">Hiring for validation or DV? Or just want to trade testbench war stories — say hi.</p>
+                    <a class="btn-mail" href="mailto:Nicholas.K.Hu@rice.edu">Nicholas.K.Hu@rice.edu</a>
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/nichhu/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a>
+                        <a href="https://github.com/nkh5" target="_blank" rel="noopener">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+                        <a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arrow" aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+            </section>
 
-    <!-- ============ FOOTER ============ -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <p class="footer-sig svg-mono">// designed &amp; built by Nicholas Hu</p>
-            <div class="footer-socials">
-                <a href="https://github.com/nkh5" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-                <span aria-hidden="true">·</span>
-                <a href="https://www.linkedin.com/in/nichhu/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-                <span aria-hidden="true">·</span>
-                <a href="mailto:Nicholas.K.Hu@rice.edu" aria-label="Email">Email</a>
-                <span aria-hidden="true">·</span>
-                <a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume">Résumé</a>
-            </div>
-            <p class="footer-copy">© 2026 Nicholas Hu</p>
-        </div>
-    </footer>
+            <footer class="footer">
+                <p>© 2026 Nicholas Hu</p>
+                <p>Houston, TX</p>
+            </footer>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
