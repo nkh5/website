@@ -8,19 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---------- Theme toggle ---------- */
     const toggle = document.getElementById('theme-toggle');
+    const themeColor = document.querySelector('meta[name="theme-color"]');
 
-    const applyToggleLabel = () => {
+    const applyThemeState = () => {
         const dark = document.documentElement.dataset.theme !== 'light';
         toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        themeColor.setAttribute('content', dark ? '#1a1a18' : '#f3f2ee');
     };
 
     toggle.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
         document.documentElement.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
-        applyToggleLabel();
+        applyThemeState();
     });
-    applyToggleLabel();
+    applyThemeState();
 
     /* ---------- Typewriter ---------- */
     const typed = document.getElementById('typed');

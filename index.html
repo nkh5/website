@@ -17,13 +17,16 @@
     <!-- Favicon: amber cube -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='7' fill='%23FFC53D'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='17' font-weight='800' fill='%231A1A18' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
 
+    <meta name="theme-color" content="#1a1a18">
+
     <!-- Set theme before first paint to avoid flash -->
     <script>
         (function () {
-            try {
-                document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark';
-            } catch (e) {
-                document.documentElement.dataset.theme = 'dark';
+            var theme = 'dark';
+            try { theme = localStorage.getItem('theme') || 'dark'; } catch (e) { /* private mode */ }
+            document.documentElement.dataset.theme = theme;
+            if (theme === 'light') {
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f3f2ee');
             }
         })();
     </script>
