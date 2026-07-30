@@ -28,10 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const typed = document.getElementById('typed');
     const phrases = [
         'a software engineer.',
-        'a silicon validator.',
-        'a design verification engineer',
-        'a hardware builder.',
-        'an ECE senior @ Rice.',
+        'a silicon validation engineer.',
+        'a design verification engineer.',
+        'a hardware engineer.',
     ];
 
     if (reducedMotion) {
