@@ -13,10 +13,10 @@
     --dim: #a6a49b;
     --faint: #79776e;
     --border: rgba(255, 255, 255, 0.05);
-    --accent-bg: #f2f1ec;
+    --accent-bg: #efb098;
     --accent-ink: #1a1a18;
-    --accent-text: #C6C3BC;
-    --accent-glow: rgba(242, 241, 236, 0.26);
+    --accent-text: #efb098;
+    --accent-glow: rgba(239, 176, 152, 0.32);
     --shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.5);
 }
 
