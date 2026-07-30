@@ -233,10 +233,10 @@ img { max-width: 100%; display: block; }
     font-size: 1.12rem;
 }
 .hero-link .arrow {
-    color: var(--accent-text);
-    transition: transform 0.22s ease;
+    color: var(--dim);
+    transition: transform 0.22s ease, color 0.22s ease;
 }
-.hero-link:hover { color: var(--accent-text); }
+.hero-link:hover .arrow { color: var(--text); }
 .hero-link:hover .arrow { transform: translate(3px, -3px); }
 
 /* 6. BENTO GRID */
