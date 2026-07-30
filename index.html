@@ -68,10 +68,10 @@
             <!-- Hero: typewriter -->
             <section class="hero">
                 <h1 class="hero-line">
-                    <span class="sr-only">I'm a silicon validation and design verification engineer.</span>
+                    <span class="sr-only">I'm an engineer who builds the systems that prove hardware works.</span>
                     <span aria-hidden="true">I'm <span class="typed" id="typed"></span><span class="cursor"></span></span>
                 </h1>
-                <p class="hero-sub">I verify digital designs before tape-out and validate silicon after bring-up.</p>
+                <p class="hero-sub">Embedded software, FPGA design verification, and silicon validation. I build the machinery that answers the only question that matters: does it actually work?</p>
                 <a class="hero-link" href="#projects"><span class="arrow" aria-hidden="true">↗</span> See my work</a>
             </section>
 
@@ -82,36 +82,42 @@
                 <article class="card card-link-wrap reveal">
                     <a class="card-arrow" href="https://github.com/nkh5/silicon-char-bench" target="_blank" rel="noopener" aria-label="Silicon Characterization Bench on GitHub"><span aria-hidden="true">↗</span></a>
                     <h2 class="card-title">Silicon Characterization Bench</h2>
-                    <p class="card-sub">Post-silicon validation · 2026</p>
+                    <p class="card-sub">Post silicon validation · 2026</p>
                     <p class="card-quote">
-                        An automated validation bench for the Raspberry Pi RP2040: scripted bring-up,
-                        voltage/frequency shmoo, and power characterization. The whole test suite runs
-                        in CI with zero hardware attached.
+                      An automated characterization framework for RP2040 and RP2350 targets: scripted bringup,
+                      voltage and frequency shmoo, I2C and SPI protocol compliance, and current draw measured
+                      through an INA260. Results land in SQLite and render as HTML reports. The suite regresses
+                      in CI with no hardware attached.
                     </p>
-                    <p class="card-meta">Python · C (pico-sdk) · pytest · GitHub Actions</p>
-                </article>
-
-                <!-- Radar gun (photo card) -->
+                    <p class="card-meta">Python · C (pico-sdk) · pytest · SQLite · Jinja2 · GitHub Actions · measurement campaigns in development</p>
+                  </article>
+                
+                <!-- Publish Research -->
                 <article class="card card-link-wrap reveal">
-                    <a class="card-arrow" href="https://nkh5.github.io/ELEC327-Final-Project/" target="_blank" rel="noopener" aria-label="Radar speed gun project write-up"><span aria-hidden="true">↗</span></a>
-                    <h2 class="card-title">Handheld Radar Speed Gun</h2>
-                    <p class="card-sub">Custom PCB · Rice ELEC 327</p>
-                    <div class="card-photo">
-                        <img src="assets/radar-gun.jpg" alt="Hand-built radar speed gun with custom PCB and 3D-printed enclosure" loading="lazy">
-                    </div>
-                </article>
-
-                <!-- cpu-dv (stat quote card) -->
-                <article class="card reveal">
-                    <h2 class="card-title">16-bit CPU Verification</h2>
-                    <p class="card-sub">Pre-silicon DV · in progress</p>
+                    <a class="card-arrow" href="https://doi.org/10.1016/j.jvs.2026.03.321" target="_blank" rel="noopener" aria-label="Publication in Journal of Vascular Surgery"><span aria-hidden="true">↗</span></a>
+                    <h2 class="card-title">Published Research</h2>
+                    <p class="card-sub">Journal of Vascular Surgery · July 2026</p>
                     <p class="card-quote">
-                        “4,037 self-checking transactions against an independent golden model —
-                        zero mismatches, and 100% functional coverage. The run fails if a single
-                        bin goes unhit.”
+                      “Wearable derived metrics predict depression in patients with chronic limb threatening
+                      ischemia.” Machine learning models trained on continuous wearable biomarkers, built with
+                      Rice ECE and Baylor College of Medicine.
                     </p>
-                    <p class="card-meta">SystemVerilog · constrained random · repo publishing soon</p>
-                </article>
+                    <p class="card-meta">Python · PyTorch · pandas · 84(1):e215–e216</p>
+                  </article>
+
+                <article class="card card-link-wrap reveal">
+                    <a class="card-arrow" href="https://github.com/nkh5/fpga-axil-periph" target="_blank" rel="noopener" aria-label="AXI4-Lite peripheral subsystem on GitHub"><span aria-hidden="true">↗</span></a>
+                    <h2 class="card-title">AXI4-Lite Peripheral Subsystem</h2>
+                    <p class="card-sub">RTL design and verification · Cmod A7-35T</p>
+                    <p class="card-quote">
+                      A UART to AXI4-Lite bridge feeding PWM, timer, and GPIO peripherals, with an async FIFO
+                      handling the clock domain crossing and MMCM clock generation on the front end. Full Vivado
+                      flow through timing closure, Fmax sweep, and ILA capture. One SystemRDL source generates
+                      both the register model and the hardware in the loop pytest suite, so the spec and the
+                      tests cannot drift apart.
+                    </p>
+                    <p class="card-meta">SystemVerilog · Vivado · cocotb · Verilator · pytest · Artix-7</p>
+                  </article>
 
                 <!-- GoldBench -->
                 <article class="card card-link-wrap reveal">
@@ -126,41 +132,55 @@
                     <p class="card-meta">Python · purged cross-validation · model compression</p>
                 </article>
 
+                 <!-- Radar gun (photo card) -->
+                <article class="card card-link-wrap reveal">
+                    <a class="card-arrow" href="https://nkh5.github.io/ELEC327-Final-Project/" target="_blank" rel="noopener" aria-label="Radar speed gun project write-up"><span aria-hidden="true">↗</span></a>
+                    <h2 class="card-title">Handheld Radar Speed Gun</h2>
+                    <p class="card-sub">Custom PCB · Rice ELEC 327</p>
+                    <div class="card-photo">
+                        <img src="assets/radar-gun.jpg" alt="Hand-built radar speed gun with custom PCB and 3D-printed enclosure" loading="lazy">
+                    </div>
+                </article>
+                
                 <!-- Experience -->
                 <article class="card reveal">
                     <h2 class="card-title">Experience</h2>
                     <ul class="exp-list">
-                        <li>
-                            <p class="exp-role">Undergraduate Researcher</p>
-                            <p class="exp-org">Rice ECE × Baylor College of Medicine · 2024 — now</p>
-                            <p class="exp-note">ML models predicting patient mood from biomarkers for post-amputation care.</p>
-                        </li>
-                        <li>
-                            <p class="exp-role">Control &amp; Firmware Engineering Intern</p>
-                            <p class="exp-org">Rockwell Automation · Summer 2024</p>
-                            <p class="exp-note">200+ drive tests; built Git tooling adopted by 10+ senior engineers.</p>
-                        </li>
-                        <li>
-                            <p class="exp-role">Center &amp; Lab Assistant</p>
-                            <p class="exp-org">Lubar Innovation Center · Summer 2023</p>
-                        </li>
+                      <li>
+                        <p class="exp-role">Software Engineering Intern</p>
+                        <p class="exp-org">Rockwell Automation · Summer 2026</p>
+                        <p class="exp-note">Kotlin validation work shipped through a Jenkins, QTest, and GitLab pipeline. Built two FactoryTalk Design Studio device acceleration testbeds from the design doc, wiring controllers, relays, disruptors, and network switching.</p>
+                      </li>
+                      <li>
+                        <p class="exp-role">Software Engineering Intern</p>
+                        <p class="exp-org">Rockwell Automation · Summer 2025</p>
+                      </li>
+                      <li>
+                        <p class="exp-role">Controls &amp; Firmware Engineering Intern</p>
+                        <p class="exp-org">Rockwell Automation · Summer 2024</p>
+                        <p class="exp-note">200+ drive tests; built Git tooling adopted by 10+ senior engineers.</p>
+                      </li>
+                      <li>
+                        <p class="exp-role">Undergraduate Researcher</p>
+                        <p class="exp-org">Rice ECE × Baylor College of Medicine · 2024 — now</p>
+                        <p class="exp-note">Wearable derived ML models predicting patient mood in post amputation care. Published, July 2026.</p>
+                      </li>
                     </ul>
-                    <p class="card-meta">Also: OwlSat CubeSat hardware co-lead · IEEE · peer career advisor</p>
-                </article>
+                    <p class="card-meta">Also: OwlSat CubeSat hardware team lead (20+ members) · Biokind Analytics data science lead · IEEE · peer career advisor</p>
+                  </article>
 
                 <!-- Currently + Education stack -->
-                <div class="card-stack">
-                    <article class="card card-accent reveal">
-                        <h2 class="card-title">Currently</h2>
-                        <p class="card-quote">Open to silicon validation &amp; design verification internships.</p>
-                        <a class="card-cta" href="mailto:Nicholas.K.Hu@rice.edu"><span class="arrow" aria-hidden="true">↗</span> Get in touch</a>
-                    </article>
-                    <article class="card reveal">
-                        <h2 class="card-title">Education</h2>
-                        <p class="card-quote">BS in Electrical &amp; Computer Engineering, Rice University — May 2027.</p>
-                        <p class="card-meta">GPA 3.7 / 4.0 · Minor in Data Science</p>
-                    </article>
-                </div>
+                <article class="card card-accent reveal">
+                  <h2 class="card-title">Currently</h2>
+                  <p class="card-quote">Recruiting for new grad full time roles starting summer or fall 2027. Software, embedded, FPGA, and silicon validation. US citizen, available for roles requiring citizenship.</p>
+                  <a class="card-cta" href="mailto:Nicholas.K.Hu@rice.edu"><span class="arrow" aria-hidden="true">↗</span> Get in touch</a>
+                </article>
+        
+                <article class="card reveal">
+                  <h2 class="card-title">Education</h2>
+                  <p class="card-quote">BS in Electrical &amp; Computer Engineering, Rice University — expected May 2027.</p>
+                  <p class="card-meta">GPA 3.7 / 4.0 · Minor in Data Science</p>
+                </article>
 
                 <!-- About (full width) -->
                 <article id="about" class="card card-wide card-about reveal">
@@ -170,23 +190,25 @@
                     <div class="about-body">
                         <h2 class="card-title">About me</h2>
                         <p>
-                            Hi — I'm Nicholas, a rising senior at Rice. The question I keep coming back to is the one
-                            every chip team has to answer: <em>how do you know it works?</em> I like building the
-                            machinery that answers it — golden models and scoreboards before silicon exists,
-                            automated benches once it does.
+                            Hi — I'm Nicholas, a senior at Rice. The question I keep coming back to is the one every
+                            hardware team has to answer: <em>how do you know it works?</em> I like building the
+                            machinery that answers it — register models generated from a single source of truth,
+                            characterization benches that sweep a part until it breaks, and CI that catches the
+                            regression before a human does.
                         </p>
                         <p>
-                            Before this I tested industrial drives at Rockwell Automation, and these days I split my
-                            time between ML research with Baylor College of Medicine and leading hardware integration
-                            for Rice's OwlSat CubeSat. Off the clock: I'm probably reworking a PCB I already called done.
+                            Three summers at Rockwell Automation took me from drive firmware to production software
+                            to building hardware testbeds from a design doc. In between, I publish machine learning
+                            research with Baylor College of Medicine and lead hardware for Rice's OwlSat CubeSat.
+                            Off the clock I'm probably reworking a board I already called done.
                         </p>
                     </div>
                 </article>
 
                 <!-- Contact (full width) -->
                 <article class="card card-wide card-contact reveal">
-                    <h2 class="contact-title">Let's talk silicon.</h2>
-                    <p class="contact-sub">Hiring for validation or DV? Or just want to trade testbench war stories — say hi.</p>
+                    <h2 class="contact-title">Let's talk.</h2>
+                    <p class="contact-sub">Hiring new grads for 2027 in software, embedded, or validation? Or just just say hi.</p>
                     <a class="btn-mail" href="mailto:Nicholas.K.Hu@rice.edu">Nicholas.K.Hu@rice.edu</a>
                     <div class="contact-links">
                         <a href="https://www.linkedin.com/in/nichhu/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a>
