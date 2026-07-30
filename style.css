@@ -186,8 +186,7 @@ img { max-width: 100%; display: block; }
 :root[data-theme='dark'] .icon-moon { display: none; }
 :root[data-theme='light'] .icon-sun { display: none; }
 
-/* 5. MAIN & HERO
-------------------------------------------------- */
+/* 5. MAIN */
 .main {
     flex: 1;
     min-width: 0;
@@ -233,11 +232,14 @@ img { max-width: 100%; display: block; }
     font-size: 1.12rem;
 }
 .hero-link .arrow {
-    color: var(--dim);
+    color: var(--faint);
     transition: transform 0.22s ease, color 0.22s ease;
 }
-.hero-link:hover .arrow { color: var(--text); }
-.hero-link:hover .arrow { transform: translate(3px, -3px); }
+.hero-link:hover { color: var(--accent-text); }
+.hero-link:hover .arrow {
+    color: var(--accent-text);
+    transform: translate(3px, -3px);
+}
 
 /* 6. BENTO GRID */
 .bento {
