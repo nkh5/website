@@ -3,8 +3,7 @@
    Sidebar + bento-card layout. Dark (default) and light themes.
    ================================================================ */
 
-/* 1. THEMES & TOKENS
-------------------------------------------------- */
+/* 1. THEME */
 :root,
 :root[data-theme='dark'] {
     --bg: #1a1a18;
@@ -14,9 +13,10 @@
     --dim: #a6a49b;
     --faint: #79776e;
     --border: rgba(255, 255, 255, 0.05);
-    --accent-bg: #ffc53d;
+    --accent-bg: #f2f1ec;
     --accent-ink: #1a1a18;
-    --accent-text: #ffc53d;
+    --accent-text: #ffffff;
+    --accent-glow: rgba(242, 241, 236, 0.26);
     --shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.5);
 }
 
@@ -28,14 +28,14 @@
     --dim: #5d5b53;
     --faint: #8b897f;
     --border: rgba(29, 28, 25, 0.08);
-    --accent-bg: #ffc53d;
-    --accent-ink: #1a1a18;
-    --accent-text: #8f6400;
+    --accent-bg: #1d1c19;
+    --accent-ink: #f3f2ee;
+    --accent-text: #000000;
+    --accent-glow: rgba(29, 28, 25, 0.30);
     --shadow: 0 24px 48px -28px rgba(29, 28, 25, 0.18);
 }
 
-/* 2. GLOBAL
-------------------------------------------------- */
+/* 2. GLOBAL*/
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -50,7 +50,6 @@ body {
 }
 
 ::selection { background: var(--accent-bg); color: var(--accent-ink); }
-
 a { color: inherit; text-decoration: none; transition: color 0.22s ease; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
@@ -87,8 +86,7 @@ img { max-width: 100%; display: block; }
 
 .arrow { display: inline-block; }
 
-/* 3. LAYOUT
-------------------------------------------------- */
+/* 3. LAYOUT */
 .layout {
     display: flex;
     min-height: 100svh;
@@ -96,8 +94,7 @@ img { max-width: 100%; display: block; }
     margin: 0 auto;
 }
 
-/* 4. SIDEBAR
-------------------------------------------------- */
+/* 4. SIDEBAR */
 .sidebar {
     width: 304px;
     flex-shrink: 0;
@@ -138,7 +135,12 @@ img { max-width: 100%; display: block; }
     color: var(--text);
 }
 .side-nav a:hover,
-.side-socials a:hover { color: var(--accent-text); }
+.side-socials a:hover {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+}
 
 .side-nav .arrow {
     font-size: 0.85em;
@@ -237,8 +239,7 @@ img { max-width: 100%; display: block; }
 .hero-link:hover { color: var(--accent-text); }
 .hero-link:hover .arrow { transform: translate(3px, -3px); }
 
-/* 6. BENTO GRID & CARDS
-------------------------------------------------- */
+/* 6. BENTO GRID */
 .bento {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -335,10 +336,13 @@ img { max-width: 100%; display: block; }
 }
 .card-arrow:hover { transform: translate(2px, -2px); }
 
-/* Accent card ("Currently") */
+/* Accent card */
 .card-accent { background: var(--accent-bg); border-color: transparent; }
 .card-accent .card-title { color: var(--accent-ink); }
-.card-accent .card-quote { color: rgba(26, 26, 24, 0.78); }
+.card-accent .card-quote {
+    color: var(--accent-ink);
+    opacity: 0.78;
+}
 .card-cta {
     margin-top: auto;
     padding-top: 24px;
@@ -406,7 +410,7 @@ img { max-width: 100%; display: block; }
 }
 .btn-mail:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 34px -12px rgba(255, 197, 61, 0.55);
+    box-shadow: 0 14px 34px -12px var(--accent-glow);
     color: var(--accent-ink);
 }
 .contact-links {
@@ -419,8 +423,7 @@ img { max-width: 100%; display: block; }
 .contact-links a:hover { color: var(--accent-text); }
 .contact-links .arrow { font-size: 0.85em; color: var(--faint); }
 
-/* 7. FOOTER
-------------------------------------------------- */
+/* 7. FOOTER */
 .footer {
     display: flex;
     justify-content: space-between;
@@ -430,8 +433,7 @@ img { max-width: 100%; display: block; }
     padding: 36px 6px 8px;
 }
 
-/* 8. REVEAL ANIMATION
-------------------------------------------------- */
+/* 8. REVEAL ANIMATION */
 .reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -452,8 +454,7 @@ img { max-width: 100%; display: block; }
     .cursor { animation: none; }
 }
 
-/* 9. RESPONSIVE
-------------------------------------------------- */
+/* 9. RESPONSIVE */
 @media (max-width: 1120px) {
     .main { padding: 32px 36px 40px 24px; }
     .sidebar { padding-left: 40px; width: 264px; }
