@@ -27,8 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ---------- Typewriter ---------- */
     const typed = document.getElementById('typed');
     const phrases = [
+        'a software engineer.',
         'a silicon validator.',
-        'a verification engineer.',
+        'a design verification engineer',
         'a hardware builder.',
         'an ECE senior @ Rice.',
     ];
