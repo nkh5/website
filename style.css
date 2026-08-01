@@ -499,23 +499,64 @@ img { max-width: 100%; display: block; }
 
 /* 10. Education */
 
-.edu-row {
+.edu-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     gap: 16px;
-    margin-top: 14px;
+    padding-right: 56px;
 }
-.edu-row:first-of-type { margin-top: 22px; }
-.edu-left { font-weight: 800; font-size: 1.02rem; }
-.edu-left em { font-weight: 600; font-style: italic; }
-.edu-right { color: var(--dim); font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
-.edu-note { color: var(--dim); font-size: 0.95rem; line-height: 1.65; margin-top: 16px; }
-.edu-note strong { color: var(--text); font-weight: 700; }
+.edu-school {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+}
+.edu-gpa {
+    color: var(--dim);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-left: 8px;
+}
+.edu-when {
+    color: var(--dim);
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+.edu-degree {
+    color: var(--dim);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-top: 6px;
+}
+.edu-honors {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.edu-honors li {
+    color: var(--dim);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+}
+.edu-honors li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-text);
+}
 
 @media (max-width: 480px) {
-    .edu-row { flex-direction: column; gap: 2px; }
-    .edu-right { white-space: normal; }
+    .edu-head { flex-direction: column; gap: 2px; padding-right: 0; }
 }
 
 /* 11. ABOUT PAGE */
