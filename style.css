@@ -108,9 +108,9 @@ img { max-width: 100%; display: block; }
 }
 
 .side-name {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
 }
 
 .side-role {
@@ -277,18 +277,19 @@ img { max-width: 100%; display: block; }
 }
 
 .card-sub {
-    color: var(--faint);
+    color: var(--dim);
     font-weight: 600;
+    font-style: italic;
     font-size: 0.95rem;
     margin-top: 6px;
 }
 
-.card-quote {
+.card-meta {
     color: var(--dim);
-    font-size: 1.06rem;
-    line-height: 1.75;
-    margin-top: 22px;
-    max-width: 56ch;
+    font-size: 0.86rem;
+    font-weight: 800;
+    margin-top: auto;
+    padding-top: 26px;
 }
 
 .card-meta {
@@ -363,7 +364,7 @@ img { max-width: 100%; display: block; }
     gap: 22px;
 }
 .exp-role { font-weight: 800; font-size: 1.02rem; }
-.exp-org { color: var(--faint); font-weight: 600; font-size: 0.9rem; margin-top: 2px; }
+.exp-org { color: var(--dim); font-weight: 600; font-size: 0.9rem; margin-top: 2px; }
 .exp-note { color: var(--dim); font-size: 0.95rem; margin-top: 6px; line-height: 1.6; }
 
 /* About card */
