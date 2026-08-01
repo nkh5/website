@@ -1,0 +1,137 @@
+<article class="card card-wide card-about reveal" id="about">
+        <div class="about-photo">
+          <img src="assets/profile.jpg" alt="Nicholas Hu">
+        </div>
+        <div class="about-body">
+          <h2 class="card-title">About me</h2>
+          <p>
+            I'm Nicholas, a senior at Rice studying Electrical &amp; Computer Engineering with a
+            minor in Data Science. The question I keep coming back to is the one every hardware
+            team eventually has to answer: <em>how do you know it works?</em> I like building the
+            machinery that answers it — register models generated from a single source of truth,
+            characterization benches that sweep a part until it breaks, and CI that catches the
+            regression before a human does.
+          </p>
+          <p>
+            Three summers at Rockwell Automation took me from motor drive firmware to production
+            Kotlin to building hardware testbeds from a design spec. In between I publish machine
+            learning research with Baylor College of Medicine and lead hardware for Rice's OwlSat
+            CubeSat. Off the clock I'm probably reworking a board I already called done.
+          </p>
+        </div>
+      </article>
+
+      <article class="card card-wide reveal" id="experience">
+        <h2 class="card-title">Experience</h2>
+        <ul class="exp-list">
+          <li>
+            <p class="exp-role">Software Development Intern</p>
+            <p class="exp-org">Rockwell Automation · Milwaukee, WI · Summer 2026</p>
+            <p class="exp-note">
+              Traced a duplicate address validation defect in FactoryTalk Design Studio to a
+              topology accessor resolving by first matching topology name rather than the device's
+              actual topology, then rewrote it in Kotlin so every conflicting device reports its own
+              error linked to the offending resource. Shipped across GitHub and GitLab with extended
+              unit and browser automation coverage, clearing SonarQube quality gates. Completed and
+              merged a senior developer's branch during his absence, rebasing, resolving conflicts,
+              and clearing his Jenkins runs.
+            </p>
+            <p class="exp-note">
+              On the hardware side, built two Device Acceleration testbeds from deconstructed ViewE
+              racks: AC and DC power, relays, disruptors, a TBM controller and IO rack, network
+              switch, and Stratix 4300. Redesigned the disruptor mounting by reversing the stock
+              orientation, fitting three disruptors in the space of two for a 50% density increase
+              across all six rack shelves.
+            </p>
+          </li>
+          <li>
+            <p class="exp-role">Software Development Intern</p>
+            <p class="exp-org">Rockwell Automation · Milwaukee, WI · Summer 2025</p>
+            <p class="exp-note">
+              Engineered automated end to end test suites for FactoryTalk Design Studio, raising
+              testing efficiency 10% and cutting the team's manual regression load by roughly one
+              story point per sprint. Analyzed test outcome datasets to surface recurring failure
+              patterns, delivering recommendations that improved defect detection 12%.
+            </p>
+          </li>
+          <li>
+            <p class="exp-role">Control and Firmware Engineering Intern</p>
+            <p class="exp-org">Rockwell Automation · Milwaukee, WI · Summer 2024</p>
+            <p class="exp-note">
+              Ran efficiency testing on PowerFlex 755TR drives with IPM motors across 32
+              configurations, establishing baseline metrics for control algorithm comparison;
+              interoperability debugging contributed to a 5% improvement in drive efficiency.
+              Executed 80+ automated tests to triage and root cause system level anomalies. Built a
+              MATLAB and GitLab automation tool for Simulink model change detection, cutting manual
+              intervention 40% and earning adoption by 4+ senior engineers across teams.
+            </p>
+          </li>
+          <li>
+            <p class="exp-role">ML Student Researcher</p>
+            <p class="exp-org">Rice ECE × Baylor College of Medicine · November 2024 — present</p>
+            <p class="exp-note">
+              Built an end to end Python pipeline using XGBoost with leave one subject out cross
+              validation to predict depression severity from wearable and smartphone time series in
+              a 26 patient prospective pilot, reaching 0.74 AUC at baseline. Coauthored the
+              resulting paper in the Journal of Vascular Surgery.
+            </p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card card-wide reveal" id="leadership">
+        <h2 class="card-title">Leadership</h2>
+        <ul class="exp-list">
+          <li>
+            <p class="exp-role">Hardware Team Lead</p>
+            <p class="exp-org">OwlSat, Rice Cube Satellite Club · September 2023 — present</p>
+            <p class="exp-note">
+              Lead a 20+ member cross functional team integrating hardware and software subsystems
+              for a CubeSat, reducing design redundancy by over 7% to meet size, weight, and power
+              constraints.
+            </p>
+          </li>
+          <li>
+            <p class="exp-role">Junior Representative</p>
+            <p class="exp-org">IEEE Club, Rice University · August 2023 — present</p>
+            <p class="exp-note">
+              Helped launch the club's first professional development programming as part of the
+              officer team, owning junior class outreach and event setup for a speaker series that
+              brought engineers and recruiters from Samsung, HPE, and Y Combinator to campus,
+              reaching over 60 students.
+            </p>
+          </li>
+          <li>
+            <p class="exp-role">Data Science Team Lead</p>
+            <p class="exp-org">Biokind Analytics · November 2025</p>
+            <p class="exp-note">
+              Led a six person team analyzing five years of event, website, and YouTube data for a
+              mental health nonprofit, geocoding attendee data to county level across 12 states to
+              identify emerging hubs outside the home market. Delivered recommendations that
+              reshaped the client's event format and outreach strategy.
+            </p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card reveal" id="education">
+        <h2 class="card-title">Education</h2>
+        <p class="card-sub">Rice University · Houston, TX</p>
+        <p class="card-quote">
+          BS in Electrical and Computer Engineering, minor in Data Science. Expected May 2027.
+          National Merit Scholar (Rockwell Automation) and Chevron Engineering Scholarship, sole
+          ECE recipient.
+        </p>
+        <p class="card-meta">GPA 3.67 / 4.0 · Implementation of Digital Systems · Digital Logic Design · Data Structures &amp; Algorithms · Machine Learning · Fundamentals of Computer Engineering</p>
+      </article>
+
+      <article class="card reveal">
+        <h2 class="card-title">Skills</h2>
+        <p class="card-sub">Languages and tools</p>
+        <p class="card-quote">
+          Python, SystemVerilog, Kotlin, C/C++, Java, SQL, MATLAB. Vivado, cocotb, Verilator,
+          SystemRDL, pytest, Docker, Git and GitLab, Jenkins CI/CD, QTest, SonarQube. Native English
+          and Chinese, proficient Spanish.
+        </p>
+        <p class="card-meta">Certifications: Advanced Generative AI for Developers (Google) · Inspect Rich Documents with Gemini Multimodality and Multimodal RAG (Google) · Getting Started with Deep Learning (NVIDIA) · Lean Six Sigma Yellow Belt</p>
+      </article>
