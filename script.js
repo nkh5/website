@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---------- Typewriter ---------- */
     const typed = document.getElementById('typed');
+    if (typed) {
+        // ...existing typewriter code stays exactly as it is, indented inside here
+    
     const phrases = [
         'a software engineer.',
         'a silicon validation engineer.',
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         setTimeout(tick, 500);
     }
-
+    }
     /* ---------- Staggered card reveals ---------- */
     const revealEls = document.querySelectorAll('.reveal');
 
