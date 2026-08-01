@@ -75,7 +75,61 @@
 
             <!-- Bento grid -->
             <section id="projects" class="bento" aria-label="Projects and highlights">
-                <!-- Contact (full width) -->
+                <div class="card-stack">
+                <article class="card card-accent reveal">
+                  <h2 class="card-title">Currently</h2>
+                  <p class="card-quote">Recruiting for new grad full time roles starting summer or fall 2027. Software, embedded, FPGA, and silicon validation. US citizen, available for roles requiring citizenship.</p>
+                  <a class="card-cta" href="#contact">Get in touch <span class="arrow" aria-hidden="true">↗</span></a>
+                </article>
+        
+                <article class="card reveal" id="education">
+                  <h2 class="card-title">Education</h2>
+                  <div class="edu-row">
+                    <span class="edu-left">Rice University, Houston, TX</span>
+                    <span class="edu-right">May 2027</span>
+                  </div>
+                  <div class="edu-row">
+                    <span class="edu-left"><em>BS in Electrical and Computer Engineering, Minor in Data Science</em></span>
+                    <span class="edu-right">GPA 3.67 / 4.0</span>
+                  </div>
+                  <p class="edu-note"><strong>Honors:</strong> National Merit Scholar (Rockwell Automation) | Chevron Engineering Scholarship (sole ECE recipient)</p>
+                  <p class="edu-note"><strong>Relevant Coursework:</strong> Data Structures &amp; Algorithms, Machine Learning, Fundamentals of Computer Engineering</p>
+                </article>
+              </div>
+                
+                <article class="card card-link-wrap reveal">
+                <a class="card-arrow" href="https://github.com/nkh5/fpga-axil-periph" target="_blank" rel="noopener" aria-label="AXI4-Lite peripheral on GitHub"><span aria-hidden="true">↗</span></a>
+                <h2 class="card-title">AXI4-Lite Peripheral on FPGA</h2>
+                <p class="card-sub">RTL design and verification · April 2026</p>
+                <p class="card-quote">An AXI4-Lite peripheral subsystem on an Artix-7 with PWM, timer, and GPIO blocks, where the register model and the hardware in the loop test suite are generated from a single SystemRDL source so RTL, firmware, and tests cannot drift apart.</p>
+                <p class="card-meta">SystemVerilog · Vivado · cocotb · Verilator · SystemRDL · Cmod A7-35T</p>
+              </article>
+        
+              <article class="card card-link-wrap reveal">
+                <a class="card-arrow" href="https://github.com/nkh5/silicon-char-bench" target="_blank" rel="noopener" aria-label="Silicon Characterization Bench on GitHub"><span aria-hidden="true">↗</span></a>
+                <h2 class="card-title">Silicon Characterization Bench</h2>
+                <p class="card-sub">Post silicon validation · July 2026</p>
+                <p class="card-quote">An automated test framework that characterizes RP2040, RP2350, and MSPM0G3507 microcontrollers with scripted power cycling and logic analyzer capture, persisting every campaign to SQLite and regenerating reports under CI.</p>
+                <p class="card-meta">Python · pytest · sigrok · SQLite · Jinja2 · GitHub Actions</p>
+              </article>
+        
+              <article class="card card-link-wrap reveal">
+                <a class="card-arrow" href="https://github.com/nkh5/goldbench" target="_blank" rel="noopener" aria-label="GoldBench on GitHub"><span aria-hidden="true">↗</span></a>
+                <h2 class="card-title">GoldBench</h2>
+                <p class="card-sub">Quantitative forecasting benchmark · May 2026</p>
+                <p class="card-quote">A reproducible benchmark testing five model families on five years of gold futures under purged walk forward cross validation, which found next day direction near chance while volatility held real signal.</p>
+                <p class="card-meta">Python · pandas · LightGBM · PyTorch · ONNX</p>
+              </article>
+        
+              <article class="card card-link-wrap reveal">
+                <a class="card-arrow" href="https://doi.org/10.1016/j.jvs.2026.03.321" target="_blank" rel="noopener" aria-label="Publication in Journal of Vascular Surgery"><span aria-hidden="true">↗</span></a>
+                <h2 class="card-title">Published Research</h2>
+                <p class="card-sub">Journal of Vascular Surgery · July 2026</p>
+                <p class="card-quote">An XGBoost pipeline predicting depression severity from wearable and smartphone time series in a 26 patient prospective pilot, reaching 0.74 AUC at baseline.</p>
+                <p class="card-meta">Python · XGBoost · pandas · 84(1):e215–e216</p>
+              </article>
+                
+            <!-- Contact (full width) -->
                 <article class="card card-wide card-contact reveal" id="contact">
                     <h2 class="contact-title">Let's talk.</h2>
                     <p class="contact-sub">Hiring new grads for 2027 in software, embedded, or validation? Or just just say hi.</p>
@@ -86,71 +140,6 @@
                         <a href="assets/Nicholas_Hu_Resume.pdf" target="_blank" rel="noopener">Resume <span class="arrow" aria-hidden="true">↗</span></a>
                     </div>
                 </article>
-                
-                <article class="card card-link-wrap reveal">
-                <a class="card-arrow" href="https://github.com/nkh5/fpga-axil-periph" target="_blank" rel="noopener" aria-label="AXI4-Lite peripheral on GitHub"><span aria-hidden="true">↗</span></a>
-                <h2 class="card-title">AXI4-Lite Peripheral on FPGA</h2>
-                <p class="card-sub">RTL design and verification · April 2026</p>
-                <p class="card-quote">
-                  An AXI4-Lite peripheral subsystem on a Cmod A7-35T with MMCM clock generation, PWM,
-                  timer, and GPIO blocks, plus a UART to AXI4-Lite bridge using an async FIFO for clock
-                  domain crossing. The register model and the hardware in the loop pytest suite are
-                  generated from a single SystemRDL source, so RTL, firmware, and tests cannot drift apart.
-                  Root caused a UART bit period defect where a width truncation ahead of a subtraction
-                  corrupted the terminal count, and corrected it in both the receive and transmit paths.
-                </p>
-                <p class="card-meta">SystemVerilog · Vivado · cocotb · Verilator · SystemRDL · Python · Artix-7</p>
-              </article>
-        
-              <article class="card card-link-wrap reveal">
-                <a class="card-arrow" href="https://github.com/nkh5/silicon-char-bench" target="_blank" rel="noopener" aria-label="Silicon Characterization Bench on GitHub"><span aria-hidden="true">↗</span></a>
-                <h2 class="card-title">Silicon Characterization Bench</h2>
-                <p class="card-sub">Post silicon validation · July 2026</p>
-                <p class="card-quote">
-                  An automated hardware test framework that characterizes RP2040, RP2350, and MSPM0G3507
-                  microcontrollers, with scripted power cycling, serial device control, and logic analyzer
-                  capture. Every campaign result persists to SQLite and renders as a characterization
-                  report under GitHub Actions CI, mirroring production test infrastructure.
-                </p>
-                <p class="card-meta">Python · pytest · sigrok · SQLite · Jinja2 · GitHub Actions · campaigns in development</p>
-              </article>
-        
-              <article class="card card-link-wrap reveal">
-                <a class="card-arrow" href="https://github.com/nkh5/goldbench" target="_blank" rel="noopener" aria-label="GoldBench on GitHub"><span aria-hidden="true">↗</span></a>
-                <h2 class="card-title">GoldBench</h2>
-                <p class="card-sub">Quantitative forecasting benchmark · May 2026</p>
-                <p class="card-quote">
-                  A reproducible benchmark evaluating five model families on five years of daily gold
-                  futures across directional and volatility tracks, with a leakage safe feature pipeline
-                  and purged walk forward cross validation over 28 folds. Next day direction came out near
-                  chance at 0.515 AUC; volatility showed real signal at 0.276 ridge correlation. Exporting
-                  the LightGBM model to ONNX cut model size 34% and sped inference 2.8x with identical
-                  predictions.
-                </p>
-                <p class="card-meta">Python · pandas · LightGBM · PyTorch · ONNX</p>
-              </article>
-        
-              <article class="card card-link-wrap reveal">
-                <a class="card-arrow" href="https://doi.org/10.1016/j.jvs.2026.03.321" target="_blank" rel="noopener" aria-label="Publication in Journal of Vascular Surgery"><span aria-hidden="true">↗</span></a>
-                <h2 class="card-title">Published Research</h2>
-                <p class="card-sub">Journal of Vascular Surgery · July 2026</p>
-                <p class="card-quote">
-                  "Wearable-derived metrics predict depression in patients with chronic limb-threatening
-                  ischemia." An XGBoost pipeline with leave one subject out cross validation predicting
-                  depression severity from wearable and smartphone time series in a 26 patient prospective
-                  pilot, reaching 0.74 AUC at baseline. Built with Rice ECE and Baylor College of Medicine.
-                </p>
-                <p class="card-meta">Python · XGBoost · pandas · 84(1):e215–e216</p>
-              </article>
-        
-              <div class="card-stack">
-                <article class="card card-accent reveal">
-                  <h2 class="card-title">Currently</h2>
-                  <p class="card-quote">Recruiting for new grad full time roles starting summer or fall 2027. Software, embedded, FPGA, and silicon validation. US citizen, available for roles requiring citizenship.</p>
-                  <a class="card-cta" href="#contact">Get in touch <span class="arrow" aria-hidden="true">↗</span></a>
-                </article>
-              </div>
-
                 
             </section>
 
