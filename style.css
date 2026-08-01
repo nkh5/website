@@ -116,8 +116,8 @@ img { max-width: 100%; display: block; }
 .side-role {
     color: var(--dim);
     margin-top: 12px;
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 1.12rem;
+    line-height: 1.55;
 }
 
 .side-nav {
