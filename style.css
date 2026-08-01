@@ -559,14 +559,14 @@ img { max-width: 100%; display: block; }
 }
 .prose-photo img { width: 100%; height: 100%; object-fit: cover; }
 
-.prose p {
+.prose > p {
     color: var(--dim);
     font-size: 1.12rem;
     line-height: 1.75;
     margin-bottom: 26px;
 }
-.prose p strong { color: var(--text); font-weight: 700; }
-.prose p a {
+.prose > p strong { color: var(--text); font-weight: 700; }
+.prose > p a {
     color: var(--text);
     font-weight: 700;
     text-decoration: underline;
@@ -574,7 +574,7 @@ img { max-width: 100%; display: block; }
     text-decoration-thickness: 1.5px;
     text-decoration-color: var(--faint);
 }
-.prose p a:hover { color: var(--accent-text); text-decoration-color: var(--accent-text); }
+.prose > p a:hover { color: var(--accent-text); text-decoration-color: var(--accent-text); }
 
 .prose h2 {
     font-size: clamp(1.9rem, 3.5vw, 2.5rem);
@@ -583,14 +583,25 @@ img { max-width: 100%; display: block; }
     margin: 76px 0 34px;
 }
 
-.entry { margin-bottom: 42px; }
+.entry { margin-bottom: 40px; }
 .entry-when {
     color: var(--dim);
     font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
-.entry-what { font-size: 1.12rem; font-weight: 800; letter-spacing: -0.01em; }
+.entry-what {
+    color: var(--text);
+    font-size: 1.08rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+.entry-note {
+    color: var(--dim);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-top: 8px;
+}
 .entry-note strong { color: var(--text); font-weight: 700; }
 
 @media (max-width: 900px) {
