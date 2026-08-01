@@ -536,7 +536,7 @@ img { max-width: 100%; display: block; }
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: var(--accent-text);
+    background: var(--text);
 }
 
 @media (max-width: 480px) {
