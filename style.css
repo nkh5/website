@@ -285,17 +285,9 @@ img { max-width: 100%; display: block; }
 }
 
 .card-meta {
-    color: var(--dim);
+    color: var(--text);
     font-size: 0.86rem;
     font-weight: 800;
-    margin-top: auto;
-    padding-top: 26px;
-}
-
-.card-meta {
-    color: var(--faint);
-    font-size: 0.86rem;
-    font-weight: 600;
     margin-top: auto;
     padding-top: 26px;
 }
@@ -505,7 +497,28 @@ img { max-width: 100%; display: block; }
     .footer { padding-top: 28px; }
 }
 
-/* 10. ABOUT PAGE */
+/* 10. Education */
+
+.edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 14px;
+}
+.edu-row:first-of-type { margin-top: 22px; }
+.edu-left { font-weight: 800; font-size: 1.02rem; }
+.edu-left em { font-weight: 600; font-style: italic; }
+.edu-right { color: var(--dim); font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
+.edu-note { color: var(--dim); font-size: 0.95rem; line-height: 1.65; margin-top: 16px; }
+.edu-note strong { color: var(--text); font-weight: 700; }
+
+@media (max-width: 480px) {
+    .edu-row { flex-direction: column; gap: 2px; }
+    .edu-right { white-space: normal; }
+}
+
+/* 11. ABOUT PAGE */
 .prose {
     max-width: 660px;
     margin: 0 auto;
@@ -553,12 +566,7 @@ img { max-width: 100%; display: block; }
     margin-bottom: 4px;
 }
 .entry-what { font-size: 1.12rem; font-weight: 800; letter-spacing: -0.01em; }
-.entry-note {
-    color: var(--dim);
-    font-size: 1.02rem;
-    line-height: 1.7;
-    margin-top: 10px;
-}
+.entry-note strong { color: var(--text); font-weight: 700; }
 
 @media (max-width: 900px) {
     .prose { padding-top: 16px; }
