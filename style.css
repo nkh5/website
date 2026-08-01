@@ -499,38 +499,22 @@ img { max-width: 100%; display: block; }
 
 /* 10. Education */
 
-.edu-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    padding-right: 56px;
-}
-.edu-school {
-    font-size: 1.45rem;
-    font-weight: 800;
-    letter-spacing: -0.015em;
-}
-.edu-gpa {
+.edu-when {
     color: var(--dim);
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0;
-    margin-left: 8px;
-}
-.edu-when {
-    color: var(--dim);
-    font-weight: 700;
-    font-size: 0.95rem;
     white-space: nowrap;
 }
 .edu-degree {
-    color: var(--dim);
-    font-weight: 600;
+    color: var(--text);
+    font-weight: 700;
     font-style: italic;
-    font-size: 0.95rem;
-    margin-top: 6px;
+    font-size: 1rem;
+    margin-top: 8px;
 }
+.edu-degree + .edu-degree { margin-top: 4px; }
+
 .edu-honors {
     margin-top: 22px;
     display: flex;
@@ -539,7 +523,7 @@ img { max-width: 100%; display: block; }
 }
 .edu-honors li {
     color: var(--dim);
-    font-size: 1.02rem;
+    font-size: 1rem;
     line-height: 1.6;
     padding-left: 20px;
     position: relative;
