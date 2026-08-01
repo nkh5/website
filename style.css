@@ -592,9 +592,9 @@ img { max-width: 100%; display: block; }
 }
 .entry-what {
     color: var(--text);
-    font-size: 1.08rem;
+    font-size: 1.24rem;
     font-weight: 800;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
 }
 .entry-note {
     color: var(--dim);
