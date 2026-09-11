@@ -1,0 +1,49 @@
+name: Sync Resume to Website
+
+on:
+  push:
+    paths:
+      - "assets/Nicholas_Hu_Resume.pdf"
+      - "scripts/parse_resume.py"
+
+  # Allows you to run it manually from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-resume:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PDF parser
+        run: pip install pymupdf
+
+      - name: Generate resume data
+        run: |
+          python scripts/parse_resume.py \
+            assets/Nicholas_Hu_Resume.pdf \
+            data/resume.json
+
+      - name: Commit generated resume data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/resume.json
+
+          if git diff --cached --quiet; then
+            echo "Resume data has not changed."
+          else
+            git commit -m "Update website data from resume"
+            git push
+          fi
