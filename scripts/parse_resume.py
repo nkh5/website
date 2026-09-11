@@ -2,6 +2,7 @@ import fitz
 import json
 import re
 import sys
+import html
 from pathlib import Path
 
 
@@ -21,52 +22,96 @@ MONTH = (
     r"September|October|November|December)"
 )
 
-DATE_RANGE = (
-    rf"{MONTH}\s+\d{{4}}\s*[–—-]\s*"
-    rf"(?:{MONTH}\s+\d{{4}}|Present)"
-)
-
-ROLE_DATE_RE = re.compile(
-    rf"^(?P<title>.+?)\s+(?P<dates>{DATE_RANGE})$"
+DATE_RANGE_RE = re.compile(
+    rf"^{MONTH}\s+\d{{4}}\s*[–—-]\s*"
+    rf"(?:{MONTH}\s+\d{{4}}|Present)$"
 )
 
 BULLET_RE = re.compile(r"^[•●▪]\s*")
+LOCATION_RE = re.compile(r"^.+,\s*[A-Z]{2}$")
 
 
-def clean_line(line):
-    """Normalize whitespace from PDF extraction."""
-    return re.sub(r"\s+", " ", line).strip()
+def clean_text(text):
+    return re.sub(r"\s+", " ", text).strip()
 
 
-def strip_location(text):
+def line_from_spans(spans):
     """
-    Removes location suffixes used by the current resume, such as:
-        Rockwell Automation Milwaukee, WI
-        Rice University ECE & Baylor College of Medicine Houston, TX
+    Build both plain text and HTML for one PDF line.
 
-    This assumes the city is one word, which matches the current resume.
+    PyMuPDF flag bit 16 = bold.
+    We escape all PDF text, then add <strong> only ourselves.
     """
-    return re.sub(
-        r"\s+\S+,\s+[A-Z]{2}$",
-        "",
-        text
-    ).strip()
+
+    plain_parts = []
+    html_parts = []
+
+    meaningful_spans = [
+        span for span in spans
+        if span.get("text", "").strip()
+    ]
+
+    for span in spans:
+        text = span.get("text", "")
+
+        if not text:
+            continue
+
+        plain_parts.append(text)
+
+        escaped = html.escape(text)
+
+        is_bold = bool(span.get("flags", 0) & 16)
+
+        if is_bold and text.strip():
+            html_parts.append(f"<strong>{escaped}</strong>")
+        else:
+            html_parts.append(escaped)
+
+    plain = clean_text("".join(plain_parts))
+    html_text = "".join(html_parts).strip()
+
+    # Determine whether the entire meaningful line is bold/italic.
+    all_bold = (
+        bool(meaningful_spans)
+        and all(span.get("flags", 0) & 16 for span in meaningful_spans)
+    )
+
+    all_italic = (
+        bool(meaningful_spans)
+        and all(span.get("flags", 0) & 2 for span in meaningful_spans)
+    )
+
+    return {
+        "text": plain,
+        "html": html_text,
+        "all_bold": all_bold,
+        "all_italic": all_italic
+    }
 
 
 def extract_pdf_lines(pdf_path):
-    """Extract all text lines from the resume PDF."""
+    """
+    Extract lines while preserving font information.
+    """
+
     document = fitz.open(pdf_path)
 
     lines = []
 
     for page in document:
-        text = page.get_text("text")
+        page_dict = page.get_text("dict")
 
-        for line in text.splitlines():
-            line = clean_line(line)
+        for block in page_dict.get("blocks", []):
 
-            if line:
-                lines.append(line)
+            if "lines" not in block:
+                continue
+
+            for pdf_line in block["lines"]:
+                line = line_from_spans(pdf_line.get("spans", []))
+
+                if line["text"]:
+                    lines.append(line)
 
     document.close()
 
@@ -75,18 +120,20 @@ def extract_pdf_lines(pdf_path):
 
 def get_section(lines, start_heading, end_heading):
     """
-    Return all lines between two resume section headings.
+    Get lines between two section headings.
     """
 
+    texts = [line["text"] for line in lines]
+
     try:
-        start = lines.index(start_heading) + 1
+        start = texts.index(start_heading) + 1
     except ValueError:
         raise RuntimeError(
-            f'Could not find "{start_heading}" section in resume.'
+            f'Could not find "{start_heading}" section.'
         )
 
     try:
-        end = lines.index(end_heading, start)
+        end = texts.index(end_heading, start)
     except ValueError:
         raise RuntimeError(
             f'Could not find "{end_heading}" after "{start_heading}".'
@@ -95,204 +142,204 @@ def get_section(lines, start_heading, end_heading):
     return lines[start:end]
 
 
-def finalize_entry(entry):
-    """Convert collected bullet text into website-ready data."""
+def strip_bullet(text):
+    return BULLET_RE.sub("", text, count=1).strip()
 
-    if not entry:
-        return None
 
-    bullets = [
-        clean_line(bullet)
-        for bullet in entry.pop("_bullets", [])
-        if clean_line(bullet)
-    ]
+def strip_bullet_html(value):
+    return re.sub(
+        r"^[•●▪]\s*",
+        "",
+        value,
+        count=1
+    ).strip()
 
-    # Website currently uses one paragraph instead of resume bullets.
-    entry["description"] = " ".join(bullets)
 
-    return entry
+def collect_bullets(lines):
+    """
+    Turn resume bullets + wrapped lines into one website paragraph.
+    Bold formatting from the PDF is retained.
+    """
+
+    bullets_plain = []
+    bullets_html = []
+
+    current_plain = None
+    current_html = None
+
+    for line in lines:
+        text = line["text"]
+
+        # New bullet
+        if BULLET_RE.match(text):
+
+            if current_plain is not None:
+                bullets_plain.append(current_plain.strip())
+                bullets_html.append(current_html.strip())
+
+            current_plain = strip_bullet(text)
+            current_html = strip_bullet_html(line["html"])
+
+            continue
+
+        # Ignore entry-header material.
+        if (
+            line["all_bold"]
+            or line["all_italic"]
+            or LOCATION_RE.match(text)
+            or DATE_RANGE_RE.match(text)
+        ):
+            continue
+
+        # Wrapped continuation of current bullet.
+        if current_plain is not None:
+            current_plain += " " + text
+            current_html += " " + line["html"]
+
+    if current_plain is not None:
+        bullets_plain.append(current_plain.strip())
+        bullets_html.append(current_html.strip())
+
+    return {
+        "description": " ".join(bullets_plain),
+        "description_html": " ".join(bullets_html)
+    }
 
 
 def parse_experience(lines):
     """
-    Parse entries such as:
+    Handles the actual resume format:
 
-    Rockwell Automation Milwaukee, WI
-    Software Development Intern June 2026 – August 2026
-    • Bullet...
-    • Bullet...
-
-    Software Development Intern June 2025 – August 2025
-    • Bullet...
-
-    Rice University ECE & Baylor College of Medicine Houston, TX
-    ML Student Researcher November 2024 – Present
+    Rockwell Automation
+    Milwaukee, WI
+    Software Development Intern
+    June 2026 – August 2026
     • Bullet...
     """
 
     entries = []
 
+    date_indices = [
+        i for i, line in enumerate(lines)
+        if DATE_RANGE_RE.match(line["text"])
+    ]
+
     current_organization = None
-    current_entry = None
+    previous_date_index = -1
 
-    i = 0
+    for position, date_index in enumerate(date_indices):
 
-    while i < len(lines):
-        line = lines[i]
-
-        role_match = ROLE_DATE_RE.match(line)
-
-        # ---------------------------------
-        # Resume bullet
-        # ---------------------------------
-
-        if BULLET_RE.match(line):
-
-            if current_entry is not None:
-                bullet = BULLET_RE.sub("", line).strip()
-                current_entry["_bullets"].append(bullet)
-
-            i += 1
+        if date_index == 0:
             continue
 
-        # ---------------------------------
-        # Role + dates
-        # ---------------------------------
+        role_index = date_index - 1
+        role = lines[role_index]["text"]
+        dates = lines[date_index]["text"]
 
-        if role_match:
+        # Search since the previous role for a new fully-bold organization.
+        search_start = previous_date_index + 1
 
-            if current_entry is not None:
-                entries.append(finalize_entry(current_entry))
+        organization_candidates = []
 
-            current_entry = {
-                "organization": current_organization or "",
-                "role": role_match.group("title").strip(),
-                "dates": role_match.group("dates").strip(),
-                "_bullets": []
-            }
+        for candidate in lines[search_start:role_index]:
+            text = candidate["text"]
 
-            i += 1
-            continue
+            if (
+                candidate["all_bold"]
+                and not BULLET_RE.match(text)
+                and not LOCATION_RE.match(text)
+            ):
+                organization_candidates.append(text)
 
-        # ---------------------------------
-        # Detect organization line
-        #
-        # Organization lines are immediately
-        # followed by a role/date line.
-        # ---------------------------------
+        if organization_candidates:
+            current_organization = organization_candidates[-1]
 
-        next_line = lines[i + 1] if i + 1 < len(lines) else ""
+        if not current_organization:
+            raise RuntimeError(
+                f"Could not determine organization for role: {role}"
+            )
 
-        if ROLE_DATE_RE.match(next_line):
+        # Description ends immediately before the next role.
+        if position + 1 < len(date_indices):
+            next_date_index = date_indices[position + 1]
+            description_end = next_date_index - 1
+        else:
+            description_end = len(lines)
 
-            if current_entry is not None:
-                entries.append(finalize_entry(current_entry))
-                current_entry = None
+        description_lines = lines[
+            date_index + 1:description_end
+        ]
 
-            current_organization = strip_location(line)
+        descriptions = collect_bullets(description_lines)
 
-            i += 1
-            continue
+        entries.append({
+            "organization": current_organization,
+            "role": role,
+            "dates": dates,
+            **descriptions
+        })
 
-        # ---------------------------------
-        # Wrapped bullet continuation
-        # ---------------------------------
-
-        if (
-            current_entry is not None
-            and current_entry["_bullets"]
-        ):
-
-            current_entry["_bullets"][-1] += " " + line
-
-        i += 1
-
-    if current_entry is not None:
-        entries.append(finalize_entry(current_entry))
+        previous_date_index = date_index
 
     return entries
 
 
 def parse_leadership(lines):
     """
-    Parse entries such as:
+    Handles:
 
-    OwlSat (Rice CubeSat Club) | Hardware Team Lead September 2023 – Present
-    • Bullet...
-
-    Rice IEEE | Class Representative August 2023 – Present
+    OwlSat (Rice CubeSat Club) | Hardware Team Lead
+    September 2023 – Present
     • Bullet...
     """
 
     entries = []
-    current_entry = None
 
-    for line in lines:
+    date_indices = [
+        i for i, line in enumerate(lines)
+        if DATE_RANGE_RE.match(line["text"])
+    ]
 
-        # ---------------------------------
-        # Bullet
-        # ---------------------------------
+    for position, date_index in enumerate(date_indices):
 
-        if BULLET_RE.match(line):
-
-            if current_entry is not None:
-                bullet = BULLET_RE.sub("", line).strip()
-                current_entry["_bullets"].append(bullet)
-
+        if date_index == 0:
             continue
 
-        # ---------------------------------
-        # Organization | Role + Dates
-        # ---------------------------------
+        heading = lines[date_index - 1]["text"]
+        dates = lines[date_index]["text"]
 
-        role_match = ROLE_DATE_RE.match(line)
+        if "|" not in heading:
+            raise RuntimeError(
+                f"Expected leadership heading containing '|': {heading}"
+            )
 
-        if role_match:
+        organization, role = heading.rsplit("|", 1)
 
-            title = role_match.group("title").strip()
-            dates = role_match.group("dates").strip()
+        if position + 1 < len(date_indices):
+            next_date_index = date_indices[position + 1]
+            description_end = next_date_index - 1
+        else:
+            description_end = len(lines)
 
-            if "|" not in title:
-                # If format changes unexpectedly,
-                # don't generate incorrect content.
-                raise RuntimeError(
-                    f"Leadership entry does not contain '|': {line}"
-                )
+        description_lines = lines[
+            date_index + 1:description_end
+        ]
 
-            organization, role = title.rsplit("|", 1)
+        descriptions = collect_bullets(description_lines)
 
-            if current_entry is not None:
-                entries.append(finalize_entry(current_entry))
-
-            current_entry = {
-                "organization": organization.strip(),
-                "role": role.strip(),
-                "dates": dates,
-                "_bullets": []
-            }
-
-            continue
-
-        # ---------------------------------
-        # Wrapped bullet continuation
-        # ---------------------------------
-
-        if (
-            current_entry is not None
-            and current_entry["_bullets"]
-        ):
-
-            current_entry["_bullets"][-1] += " " + line
-
-    if current_entry is not None:
-        entries.append(finalize_entry(current_entry))
+        entries.append({
+            "organization": organization.strip(),
+            "role": role.strip(),
+            "dates": dates,
+            **descriptions
+        })
 
     return entries
 
 
 def validate(data):
     """
-    Fail instead of publishing suspicious/empty data.
+    Fail rather than publishing broken resume data.
     """
 
     if not data["experience"]:
@@ -309,18 +356,17 @@ def validate(data):
 
         for entry in data[section]:
 
-            required = (
+            for key in (
                 "organization",
                 "role",
                 "dates",
-                "description"
-            )
-
-            for key in required:
+                "description",
+                "description_html"
+            ):
 
                 if not entry.get(key):
                     raise RuntimeError(
-                        f"Missing {key} in {section} entry: {entry}"
+                        f"Missing {key} in {section}: {entry}"
                     )
 
 
