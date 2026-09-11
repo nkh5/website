@@ -1,0 +1,48 @@
+{
+  "experience": [
+    {
+      "organization": "Rockwell Automation",
+      "role": "Software Development Intern",
+      "dates": "June 2026 – August 2026",
+      "description": "Redesigned duplicate slot-address validation in Kotlin, replacing one bus-level warning with per-device errors linked to each conflicting profile so users can identify and correct the issue. Corrected a topology lookup defect that could return the first topology instead of the device’s actual topology; added 3 unit tests, updated 4 browser-based end-to-end cases, and merged the branch after CI and SonarQube checks passed. Took ownership of a senior developer’s in-progress performance optimization during their absence, learned the existing implementation, and delivered it 4 days ahead of schedule.",
+      "description_html": "Redesigned duplicate slot-address validation in Kotlin, replacing one bus-level warning with per-device errors linked to each conflicting profile so users can identify and correct the issue. Corrected a topology lookup defect that could return the first topology instead of the device’s actual topology; added <strong>3</strong> <strong>unit</strong> <strong>tests</strong>, updated <strong>4</strong> <strong>browser-based</strong> <strong>end-to-end</strong> <strong>cases</strong>, and merged the branch after CI and SonarQube checks passed. Took ownership of a senior developer’s in-progress performance optimization during their absence, learned the existing implementation, and delivered it <strong>4</strong> <strong>days</strong> <strong>ahead</strong> <strong>of</strong> <strong>schedule</strong>."
+    },
+    {
+      "organization": "Rockwell Automation",
+      "role": "Software Development Intern",
+      "dates": "June 2025 – August 2025",
+      "description": "Automated 3 recurring manual regression cases in TypeScript, published the browser tests through Jenkins, and validated successful execution across qTest runs. Maintained software quality across a 22-test nightly regression suite by repeatedly tracing failed end-to-end tests to recent merge requests and recommending reverts of the responsible changes to developers before defects could reach users.",
+      "description_html": "Automated <strong>3</strong> <strong>recurring</strong> <strong>manual</strong> <strong>regression</strong> <strong>cases</strong> in TypeScript, published the browser tests through Jenkins, and validated successful execution across qTest runs. Maintained software quality across a <strong>22-test</strong> <strong>nightly</strong> <strong>regression</strong> <strong>suite</strong> by repeatedly tracing failed end-to-end tests to recent merge requests and recommending reverts of the responsible changes to developers before defects could reach users."
+    },
+    {
+      "organization": "Rockwell Automation",
+      "role": "Control and Firmware Engineering Intern",
+      "dates": "June 2024 – August 2024",
+      "description": "Built a MATLAB/Simulink workflow that added visual model comparisons to GitLab, reducing developers’ manual comparison work and earning adoption by 2 additional engineering teams. Evaluated drive-control software across 200 automated tests and established a performance baseline through 32 system efficiency tests spanning motor loads and speeds.",
+      "description_html": "Built a MATLAB/Simulink workflow that added visual model comparisons to GitLab, reducing developers’ manual comparison work and earning adoption by <strong>2</strong> <strong>additional</strong> <strong>engineering</strong> <strong>teams</strong>. Evaluated drive-control software across <strong>200</strong> <strong>automated</strong> <strong>tests</strong> and established a performance baseline through <strong>32</strong> <strong>system</strong> <strong>efficiency</strong> <strong>tests</strong> spanning motor loads and speeds."
+    },
+    {
+      "organization": "Rice University ECE & Baylor College of Medicine",
+      "role": "ML Student Researcher",
+      "dates": "November 2024 – Present",
+      "description": "Built a Python/XGBoost pipeline using wearable and smartphone features from a 26-participant, 90-day depression study; used leave-one-subject-out cross-validation to prevent participant leakage and achieved 0.74 AUC at baseline. Analyzed clinical, quality-of-life, and wearable measures to identify a statistically significant relationship between limb-threat severity and toe-brachial index; coauthored a Journal of Vascular Surgery publication from the Rice-Baylor collaboration.",
+      "description_html": "Built a Python/XGBoost pipeline using wearable and smartphone features from a <strong>26-participant,</strong> <strong>90-day</strong> <strong>depression</strong> <strong>study</strong>; used leave-one-subject-out cross-validation to prevent participant leakage and achieved <strong>0.74</strong> <strong>AUC</strong> at baseline. Analyzed clinical, quality-of-life, and wearable measures to identify a statistically significant relationship between limb-threat severity and toe-brachial index; coauthored a <strong>Journal</strong> <strong>of</strong> <strong>Vascular</strong> <strong>Surgery</strong> publication from the Rice-Baylor collaboration."
+    }
+  ],
+  "leadership": [
+    {
+      "organization": "OwlSat (Rice CubeSat Club)",
+      "role": "Hardware Team Lead",
+      "dates": "September 2023 – Present",
+      "description": "Lead a cross-functional 7-member hardware/software team integrating CubeSat subsystems under size, weight, and power constraints. Restored CubeSat function during hardware bring-up by tracing a suspected component failure to an incorrectly labeled part and identifying the correct component.",
+      "description_html": "Lead a cross-functional <strong>7-member</strong> <strong>hardware/software</strong> <strong>team</strong> integrating CubeSat subsystems under size, weight, and power constraints. Restored CubeSat function during hardware bring-up by tracing a suspected component failure to an incorrectly labeled part and identifying the correct component."
+    },
+    {
+      "organization": "Rice IEEE",
+      "role": "Class Representative",
+      "dates": "August 2023 – Present",
+      "description": "Led senior-class outreach and event operations for the club’s first professional-development speaker series, bringing engineers and recruiters from Samsung, HPE, and Y Combinator to campus and reaching 63 students (97% of the ECE graduating class).",
+      "description_html": "Led senior-class outreach and event operations for the club’s first professional-development speaker series, bringing engineers and recruiters from Samsung, HPE, and Y Combinator to campus and reaching <strong>63</strong> <strong>students</strong> <strong>(97%</strong> <strong>of</strong> <strong>the</strong> <strong>ECE</strong> <strong>graduating</strong> <strong>class)</strong>."
+    }
+  ]
+}
