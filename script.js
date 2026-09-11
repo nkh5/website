@@ -86,4 +86,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
+       /* ---------- Resume data ---------- */
+
+    const experienceList = document.getElementById('experience-list');
+    const leadershipList = document.getElementById('leadership-list');
+
+    if (experienceList || leadershipList) {
+
+        const escapeHTML = (value) => {
+            const div = document.createElement('div');
+            div.textContent = value ?? '';
+            return div.innerHTML;
+        };
+
+        const renderEntries = (container, entries) => {
+            if (!container) return;
+
+            container.innerHTML = entries.map(entry => `
+                <div class="entry">
+                    <p class="entry-when">
+                        ${escapeHTML(entry.dates)}
+                    </p>
+
+                    <p class="entry-what">
+                        ${escapeHTML(entry.role)}
+                        at
+                        ${escapeHTML(entry.organization)}
+                    </p>
+
+                    <p class="entry-note">
+                        ${escapeHTML(entry.description)}
+                    </p>
+                </div>
+            `).join('');
+        };
+
+        fetch('data/resume.json')
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Could not load resume data: ${response.status}`
+                    );
+                }
+
+                return response.json();
+            })
+            .then(data => {
+
+                renderEntries(
+                    experienceList,
+                    data.experience || []
+                );
+
+                renderEntries(
+                    leadershipList,
+                    data.leadership || []
+                );
+            })
+            .catch(error => {
+                console.error(
+                    'Error loading resume data:',
+                    error
+                );
+            });
+    }
 });
