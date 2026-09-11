@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                     <p class="entry-note">
-                        ${escapeHTML(entry.description)}
+                        ${escapeHTML(entry.description_html)}
                     </p>
                 </div>
             `).join('');
