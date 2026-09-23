@@ -336,7 +336,10 @@ img { max-width: 100%; display: block; }
 .card-accent .card-title { color: var(--accent-ink); }
 .card-accent .card-quote {
     color: var(--accent-ink);
-    opacity: 0.88;
+    opacity: 0.92;
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.7;
 }
 .card-cta {
     margin-top: auto;
