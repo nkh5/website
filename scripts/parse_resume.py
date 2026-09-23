@@ -118,29 +118,60 @@ def extract_pdf_lines(pdf_path):
     return lines
 
 
-def get_section(lines, start_heading, end_heading):
+SECTION_HEADINGS = {
+    "education",
+    "skills",
+    "experience",
+    "projects",
+    "leadership",
+    "relevant coursework"
+}
+
+
+def normalize_heading(text):
     """
-    Get lines between two section headings.
+    Normalize section headings so:
+    SKILLS
+    Skills
+    skills
+
+    all match the same way.
+    """
+    return clean_text(text).casefold()
+
+
+def get_section(lines, start_heading):
+    """
+    Get everything after start_heading until the next
+    recognized resume section.
+
+    This makes section order irrelevant.
     """
 
-    texts = [line["text"] for line in lines]
+    start_key = normalize_heading(start_heading)
 
-    try:
-        start = texts.index(start_heading) + 1
-    except ValueError:
+    start = None
+
+    for i, line in enumerate(lines):
+        if normalize_heading(line["text"]) == start_key:
+            start = i + 1
+            break
+
+    if start is None:
         raise RuntimeError(
             f'Could not find "{start_heading}" section.'
         )
 
-    try:
-        end = texts.index(end_heading, start)
-    except ValueError:
-        raise RuntimeError(
-            f'Could not find "{end_heading}" after "{start_heading}".'
-        )
+    # Find the next known resume section.
+    for i in range(start, len(lines)):
 
-    return lines[start:end]
+        text = normalize_heading(lines[i]["text"])
 
+        if text in SECTION_HEADINGS:
+            return lines[start:i]
+
+    # If this is the last section, go to end of PDF.
+    return lines[start:]
 
 def strip_bullet(text):
     return BULLET_RE.sub("", text, count=1).strip()
@@ -382,17 +413,14 @@ def main():
     lines = extract_pdf_lines(PDF_PATH)
 
     experience_lines = get_section(
-        lines,
-        "Experience",
-        "Projects"
-    )
+    lines,
+    "Experience"
+)
 
-    leadership_lines = get_section(
-        lines,
-        "Leadership",
-        "Skills"
-    )
-
+leadership_lines = get_section(
+    lines,
+    "Leadership"
+)
     data = {
         "experience": parse_experience(experience_lines),
         "leadership": parse_leadership(leadership_lines)
