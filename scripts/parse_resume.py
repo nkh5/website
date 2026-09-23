@@ -415,12 +415,12 @@ def main():
     experience_lines = get_section(
     lines,
     "Experience"
-)
+    )
 
-leadership_lines = get_section(
+    leadership_lines = get_section(
     lines,
     "Leadership"
-)
+    )
     data = {
         "experience": parse_experience(experience_lines),
         "leadership": parse_leadership(leadership_lines)
